@@ -1,0 +1,181 @@
+article, section, aside, hgroup, nav, header, footer, figure, figcaption
+{
+    display: block;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#wrapper {
+    width: 960px;
+    background-color: #FFF;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+header {
+    height: 200px;
+}
+
+#logo {
+}
+
+nav {
+    width:960px;
+}
+
+nav ul {
+    padding-left: 0;
+    margin-left: 0;
+    background-color: #F00000;
+    color: #FFF;
+    float: left;
+    width: 100%;
+}
+
+
+nav ul li {
+    display: inline;
+}
+
+
+nav ul li a {
+    font-size: 1em;
+    padding: 10px 16px;
+    background-color: #F00000;
+    color: #FFF;
+    text-decoration: none;
+    float: left;
+    border-right: 1px solid #fff;
+}
+
+nav ul li a:hover {
+    background-color: #999;
+    color: #fff;
+}
+
+.highlight a{
+    font-weight: 900;
+    color: #000;
+}
+
+#content {
+    padding-left: 0px;
+    padding-right: 40px;
+    padding-bottom: 20px;
+    float: left;
+    width:600px;
+}
+
+#content h1{
+    font-size: 24px;
+    padding-top: 25px;
+}
+
+#content h2 {
+    font-size: 18px;
+    padding-top: 25px;
+    font-weight: 200;
+}
+
+#content p{
+    font-size: 12px;
+    padding-top:15px;
+    line-height:16px;
+}
+
+#content ul li {
+    list-style: circle inside;
+}
+
+section {
+}
+
+article {
+}
+
+#rightcol {
+    float: left;
+    padding-left: 40px;
+    width: 260px;
+}
+
+#rightcol h2 {
+    font-size: 18px;
+    padding-top: 25px;
+    font-weight: 400;
+}
+
+#rightcol h3 {
+    font-size: 14px;
+    padding-top: 25px;
+    font-weight: 200;
+}
+
+#rightcol p {
+    font-size: 12px;
+}
+
+.struct_name {
+    background-color: #B0B0B0;
+    padding: 10px 10px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.struct_fields_header {
+    background-color: #D0D0D0;
+    padding: 3px 3px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.struct_field_left {
+    background-color: #D0D0D0;
+    padding: 3px 3px;
+    font-size: 14px;
+    font-weight: normal;
+    width: 100px;
+}
+
+.struct_field_right {
+    padding: 3px 3px;
+    font-size: 14px;
+    font-weight: normal;
+}
+
+.struct_table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0px 5px;
+}
+
+.struct_fields_table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0px 5px;
+}
+
+.struct_row tr {
+    margin-top: 15px;
+}
+
+aside {
+}
+
+footer {
+    clear:both;
+    height: 50px;
+}
+
+footer p {
+    font-size: 11px;
+    color:#333;
+    padding-left: 40px;
+}
+
+footer a {
+    color:#333;
+    text-decoration:none;
+}
