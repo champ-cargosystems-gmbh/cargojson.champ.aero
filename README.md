@@ -11,11 +11,11 @@ CHAMPs cargoJSON(™) is compatible with all existing cargo data sets (IATA CARG
 - Manifest
 - Airmail
 
-cargoJSON can and will be extendible to cover the progress in the industry in terms of data coverage and technologies.
+cargoJSON(™) can and will be extendible to cover the progress in the industry in terms of data coverage and technologies.
 
 ## Quickintroduction
 
-To demonstrate the use of cargoJSON we use a Flight Status Request as an example.
+To demonstrate the use of cargoJSON(™) we use a Flight Status Request as an example.
 
 The Cargo Canonical message containing the request is handled in the structure provided by the class:
 
