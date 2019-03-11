@@ -4,6 +4,27 @@
   background-color: #ffffff;
 }
 
+.page-header > div {
+  margin-bottom: 50px;
+}
+
+#cargojson_logo {
+  height: 140px;
+}
+
+#champ_logo {
+  height: 118px;
+}
+
+.page-header > div > img {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.page-header > div > img:not(:last-child) {
+  margin-right: 100px;
+}
+
 .btn {
   color: rgba(40,40,40,0.7);
   background-color: rgba(40,40,40,0.02);
