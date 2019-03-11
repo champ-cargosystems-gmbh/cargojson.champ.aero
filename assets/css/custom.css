@@ -1,0 +1,18 @@
+.page-header {
+  color: #333333;
+  background-image: none;
+  background-color: #ffffff;
+}
+
+.btn {
+  color: rgba(40,40,40,0.7);
+  background-color: rgba(40,40,40,0.02);
+  border-color: rgba(40,40,40,0.3);
+}
+
+.btn:hover {
+  color: rgba(40,40,40,0.8);
+  text-decoration: none;
+  background-color: rgba(40,40,40,0.05);
+  border-color: rgba(40,40,40,0.3);
+}
