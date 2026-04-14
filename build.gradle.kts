@@ -4,7 +4,7 @@ plugins {
 }
 
 group = "aero.champ"
-version = "1.0-SNAPSHOT"
+version = "1.1"
 
 java {
     sourceCompatibility = JavaVersion.VERSION_11
