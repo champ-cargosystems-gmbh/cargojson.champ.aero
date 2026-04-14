@@ -25,8 +25,8 @@ dependencies {
     
     implementation("io.swagger.core.v3:swagger-annotations:2.2.31")
     implementation("jakarta.validation:jakarta.validation-api:3.1.1")
-    implementation("jakarta.ws.rs:jakarta.ws.rs-api:4.0.0")
-    implementation("jakarta.servlet:jakarta.servlet-api:6.1.0")
+    compileOnly("jakarta.ws.rs:jakarta.ws.rs-api:4.0.0")
+    compileOnly("jakarta.servlet:jakarta.servlet-api:6.1.0")
     
     implementation("com.google.guava:guava:33.4.8-jre")
 
