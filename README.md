@@ -1,8 +1,8 @@
 ## 📚 [API Documentation](cargoJSON_APIDoc/)
 
-Die API-Spezifikation ist in zwei Formaten verfügbar:
-- **[champ.yaml](cargoJSON_APIDoc/champ.yaml)**: Optimiert für die Dokumentations-Anzeige (flache Struktur).
-- **[champ-inheritance.yaml](cargoJSON_APIDoc/champ-inheritance.yaml)**: Beinhaltet die originale Vererbung (`allOf`), ideal für Code-Generatoren.
+The API specification is available in two formats:
+- **[champ.yaml](cargoJSON_APIDoc/champ.yaml)**: Optimized for documentation display (flattened structure).
+- **[champ-inheritance.yaml](cargoJSON_APIDoc/champ-inheritance.yaml)**: Includes original inheritance (`allOf`), ideal for code generators.
 
 ---
 
