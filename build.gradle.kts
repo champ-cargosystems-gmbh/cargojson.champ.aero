@@ -16,19 +16,19 @@ repositories {
 }
 
 dependencies {
-    val jacksonVersion = "2.18.2"
+    val jacksonVersion = "2.19.0"
     implementation("com.fasterxml.jackson.core:jackson-core:$jacksonVersion")
     implementation("com.fasterxml.jackson.core:jackson-databind:$jacksonVersion")
     implementation("com.fasterxml.jackson.core:jackson-annotations:$jacksonVersion")
     implementation("com.fasterxml.jackson.datatype:jackson-datatype-jdk8:$jacksonVersion")
     implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:$jacksonVersion")
     
-    implementation("io.swagger.core.v3:swagger-annotations:2.2.28")
+    implementation("io.swagger.core.v3:swagger-annotations:2.2.31")
     implementation("jakarta.validation:jakarta.validation-api:3.1.1")
     implementation("jakarta.ws.rs:jakarta.ws.rs-api:4.0.0")
     implementation("jakarta.servlet:jakarta.servlet-api:6.1.0")
     
-    implementation("com.google.guava:guava:33.3.1-jre")
+    implementation("com.google.guava:guava:33.4.8-jre")
 
     testImplementation("junit:junit:4.13.2")
     testImplementation("com.fasterxml.jackson.module:jackson-module-jsonSchema:$jacksonVersion")
