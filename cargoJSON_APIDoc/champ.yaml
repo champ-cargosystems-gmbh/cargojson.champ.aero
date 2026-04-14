@@ -687,283 +687,290 @@ components:
       - weight
       type: object
     AirWayBillMessage:
-      allOf:
-      - $ref: "#/components/schemas/MessageObject"
-      - properties:
-          airWaybillNumber:
-            description: Contains the air waybill number.
-            type: string
-          origin:
-            description: Airport code of origin airport.
-            type: string
-          destination:
-            description: Airport code of destination airport.
-            type: string
-          totalConsignmentNumberOfPieces:
-            description: Total number of pieces of complete consignment.
-            example: 20
-            format: int32
-            type: integer
-          weight:
-            $ref: "#/components/schemas/Weight"
-          volume:
-            $ref: "#/components/schemas/Volume"
-          densityGroup:
-            description: Enumeration indicating approximate density of goods.
+      description: Cargo Canonical message containing an AirWayBill as payload.
+      properties:
+        type:
+          description: "[Message Base] "
+          type: string
+          example: null
+        id:
+          description: "[Message Base] Unique identification of the message."
+          format: uuid
+          type: string
+          example: null
+        messageHeader:
+          $ref: "#/components/schemas/MessageHeader"
+        airWaybillNumber:
+          description: |-
+            [Payload Fields]
+            Contains the air waybill number.
+          type: string
+          example: null
+        origin:
+          description: Airport code of origin airport.
+          type: string
+          example: null
+        destination:
+          description: Airport code of destination airport.
+          type: string
+          example: null
+        totalConsignmentNumberOfPieces:
+          description: Total number of pieces of complete consignment.
+          example: 20
+          format: int32
+          type: integer
+        weight:
+          $ref: "#/components/schemas/Weight"
+        volume:
+          $ref: "#/components/schemas/Volume"
+        densityGroup:
+          description: Enumeration indicating approximate density of goods.
+          enum:
+          - KG60_PER_CUBICMETRE
+          - KG90_PER_CUBICMETRE
+          - KG120_PER_CUBICMETRE
+          - KG160_PER_CUBICMETRE
+          - KG220_PER_CUBICMETRE
+          - KG250_PER_CUBICMETRE
+          - KG300_PER_CUBICMETRE
+          - KG400_PER_CUBICMETRE
+          - KG600_PER_CUBICMETRE
+          - KG950_PER_CUBICMETRE
+          type: string
+          example: null
+        flights:
+          description: Flight bookings.
+          items:
+            $ref: "#/components/schemas/Flight"
+          type: array
+          example: null
+        route:
+          description: Routing.
+          items:
+            $ref: "#/components/schemas/Routing"
+          type: array
+          example: null
+        shipper:
+          $ref: "#/components/schemas/AccountContact"
+        consignee:
+          $ref: "#/components/schemas/AccountContact"
+        carriersExecution:
+          $ref: "#/components/schemas/CarriersExecution"
+        senderReference:
+          $ref: "#/components/schemas/ReferenceInfo"
+        chargeDeclarations:
+          $ref: "#/components/schemas/ChargeDeclarations"
+        chargeItems:
+          description: Array of charge items (also known as rate description).
+          items:
+            $ref: "#/components/schemas/ChargeItem"
+          type: array
+          example: null
+        agent:
+          $ref: "#/components/schemas/AgentIdentification"
+        specialServiceRequest:
+          description: Special Service Request (Information related to instructions
+            for special action required).
+          example: Must be kept above 5 degrees celsius.
+          type: string
+        alsoNotify:
+          $ref: "#/components/schemas/AccountContact"
+        prepaidChargeSummary:
+          $ref: "#/components/schemas/ChargeSummary"
+        collectChargeSummary:
+          $ref: "#/components/schemas/ChargeSummary"
+        specialHandlingCodes:
+          description: Array of codes for special handling and dangerous goods.
+          items:
+            description: Enumeration of codes for special handling and dangerous goods.
             enum:
-            - KG60_PER_CUBICMETRE
-            - KG90_PER_CUBICMETRE
-            - KG120_PER_CUBICMETRE
-            - KG160_PER_CUBICMETRE
-            - KG220_PER_CUBICMETRE
-            - KG250_PER_CUBICMETRE
-            - KG300_PER_CUBICMETRE
-            - KG400_PER_CUBICMETRE
-            - KG600_PER_CUBICMETRE
-            - KG950_PER_CUBICMETRE
+            - ACT
+            - AOG
+            - BUP
+            - CAO
+            - CAT
+            - NSC
+            - SHR
+            - COM
+            - ECP
+            - ECC
+            - CRT
+            - COL
+            - RDS
+            - DIP
+            - EAP
+            - EAW
+            - EMD
+            - REQ
+            - RRE
+            - PES
+            - PEF
+            - EAT
+            - FRI
+            - FRO
+            - PEP
+            - ATT
+            - GOH
+            - HEG
+            - HEA
+            - HUM
+            - PEA
+            - SCO
+            - SPF
+            - SPX
+            - LIC
+            - AVI
+            - LHO
+            - MAL
+            - PEM
+            - MUW
+            - NWP
+            - OBX
+            - BIG
+            - OHG
+            - PAC
+            - PER
+            - PIL
+            - XPS
+            - QRT
+            - RAC
+            - SHL
+            - WET
+            - SWP
+            - SUR
+            - FIL
+            - VAL
+            - VIC
+            - VOL
+            - VUN
+            - PEB
+            - PHY
+            - VAG
+            - FSA
+            - XPH
+            - AER
+            - VIP
+            - UCB
+            - XPU
+            - MON
+            - PEV
+            - ART
+            - BSD
+            - BPL
+            - CSL
+            - DGR
+            - NOS
+            - PPL
+            - SEC
+            - SMU
+            - ZXF
+            - ZXO
+            - TRZ
+            - GEN
+            - ELI
+            - ELM
+            - RCM
+            - RCL
+            - RFW
+            - ICE
+            - REX
+            - RCX
+            - RGX
+            - RLI
+            - RLM
+            - RXB
+            - RXC
+            - RXD
+            - RXE
+            - RXG
+            - RXS
+            - RFG
+            - RFL
+            - RFS
+            - RIS
+            - MAG
+            - RMD
+            - RNG
+            - ROP
+            - ROX
+            - RPB
+            - RPG
+            - RSB
+            - RRW
+            - RRY
+            - RSC
+            - CIC
+            - ERT
+            - NST
+            - PIP
             type: string
-          flights:
-            description: Flight bookings.
-            items:
-              $ref: "#/components/schemas/Flight"
-            type: array
-          route:
-            description: Routing.
-            items:
-              $ref: "#/components/schemas/Routing"
-            type: array
-          shipper:
-            $ref: "#/components/schemas/AccountContact"
-          consignee:
-            $ref: "#/components/schemas/AccountContact"
-          carriersExecution:
-            $ref: "#/components/schemas/CarriersExecution"
-          senderReference:
-            $ref: "#/components/schemas/ReferenceInfo"
-          chargeDeclarations:
-            $ref: "#/components/schemas/ChargeDeclarations"
-          chargeItems:
-            description: Array of charge items (also known as rate description).
-            items:
-              $ref: "#/components/schemas/ChargeItem"
-            type: array
-          agent:
-            $ref: "#/components/schemas/AgentIdentification"
-          specialServiceRequest:
-            description: Special Service Request (Information related to instructions
-              for special action required).
-            example: Must be kept above 5 degrees celsius.
-            type: string
-          alsoNotify:
-            $ref: "#/components/schemas/AccountContact"
-          prepaidChargeSummary:
-            $ref: "#/components/schemas/ChargeSummary"
-          collectChargeSummary:
-            $ref: "#/components/schemas/ChargeSummary"
-          specialHandlingCodes:
-            description: Array of codes for special handling and dangerous goods.
-            items:
-              description: Enumeration of codes for special handling and dangerous
-                goods.
-              enum:
-              - ACT
-              - AOG
-              - BUP
-              - CAO
-              - CAT
-              - NSC
-              - SHR
-              - COM
-              - ECP
-              - ECC
-              - CRT
-              - COL
-              - RDS
-              - DIP
-              - EAP
-              - EAW
-              - EMD
-              - REQ
-              - RRE
-              - PES
-              - PEF
-              - EAT
-              - FRI
-              - FRO
-              - PEP
-              - ATT
-              - GOH
-              - HEG
-              - HEA
-              - HUM
-              - PEA
-              - SCO
-              - SPF
-              - SPX
-              - LIC
-              - AVI
-              - LHO
-              - MAL
-              - PEM
-              - MUW
-              - NWP
-              - OBX
-              - BIG
-              - OHG
-              - PAC
-              - PER
-              - PIL
-              - XPS
-              - QRT
-              - RAC
-              - SHL
-              - WET
-              - SWP
-              - SUR
-              - FIL
-              - VAL
-              - VIC
-              - VOL
-              - VUN
-              - PEB
-              - PHY
-              - VAG
-              - FSA
-              - XPH
-              - AER
-              - VIP
-              - UCB
-              - XPU
-              - MON
-              - PEV
-              - ART
-              - BSD
-              - BPL
-              - CSL
-              - DGR
-              - NOS
-              - PPL
-              - SEC
-              - SMU
-              - ZXF
-              - ZXO
-              - TRZ
-              - GEN
-              - ELI
-              - ELM
-              - RCM
-              - RCL
-              - RFW
-              - ICE
-              - REX
-              - RCX
-              - RGX
-              - RLI
-              - RLM
-              - RXB
-              - RXC
-              - RXD
-              - RXE
-              - RXG
-              - RXS
-              - RFG
-              - RFL
-              - RFS
-              - RIS
-              - MAG
-              - RMD
-              - RNG
-              - ROP
-              - ROX
-              - RPB
-              - RPG
-              - RSB
-              - RRW
-              - RRY
-              - RSC
-              - CIC
-              - ERT
-              - NST
-              - PIP
-              type: string
-            type: array
-            uniqueItems: true
-          additionalSpecialHandlingCodes:
+          type: array
+          example: null
+        additionalSpecialHandlingCodes:
+          description: Special handling codes that are not covered by the enumeration
+            type of field 'specialHandlingCodes'.
+          example: FOO
+          items:
             description: Special handling codes that are not covered by the enumeration
               type of field 'specialHandlingCodes'.
             example: FOO
-            items:
-              description: Special handling codes that are not covered by the enumeration
-                type of field 'specialHandlingCodes'.
-              example: FOO
-              type: string
-            type: array
-            uniqueItems: true
-          accounting:
-            description: Accounting information.
-            items:
-              $ref: "#/components/schemas/Accounting"
-            type: array
-          otherCharges:
-            description: Other charges.
-            items:
-              $ref: "#/components/schemas/OtherChargeItem"
-            type: array
-          shippersCertification:
-            description: Certification of the shipper (name of signature).
-            example: K. Wilson
             type: string
-          otherServiceInformation:
-            description: "Other service information: Remarks relating to a shipment."
-            example: Extra charge due to special handling requirements.
-            type: string
-          chargesCollectInDestCurrency:
-            $ref: "#/components/schemas/CollectChargesInDestinationCurrency"
-          customsOriginCode:
-            description: Code indicating the origin of goods for Customs purposes.
-            example: T2
-            type: string
-          commissionInfo:
-            $ref: "#/components/schemas/CommissionInfo"
-          salesIncentive:
-            $ref: "#/components/schemas/SalesIncentive"
-          agentFileReference:
-            description: Agent file reference used to identify a specific booking
-              or file.
-            example: "123456"
-            type: string
-          nominatedHandlingParty:
-            $ref: "#/components/schemas/NominatedHandlingParty"
-          shipmentReferenceInformation:
-            $ref: "#/components/schemas/ShipmentReferenceInfo"
-          otherParticipant:
-            description: Array of other participant information.
-            items:
-              $ref: "#/components/schemas/OtherParticipant"
-            type: array
-          oci:
-            description: "Array of other customs, security and regulatory control\
-              \ information."
-            items:
-              $ref: "#/components/schemas/OCI"
-            type: array
-        type: object
-      description: Cargo Canonical message containing an AirWayBill as payload.
+          type: array
+        accounting:
+          description: Accounting information.
+          items:
+            $ref: "#/components/schemas/Accounting"
+          type: array
+          example: null
+        otherCharges:
+          description: Other charges.
+          items:
+            $ref: "#/components/schemas/OtherChargeItem"
+          type: array
+          example: null
+        shippersCertification:
+          description: Certification of the shipper (name of signature).
+          example: K. Wilson
+          type: string
+        otherServiceInformation:
+          description: "Other service information: Remarks relating to a shipment."
+          example: Extra charge due to special handling requirements.
+          type: string
+        chargesCollectInDestCurrency:
+          $ref: "#/components/schemas/CollectChargesInDestinationCurrency"
+        customsOriginCode:
+          description: Code indicating the origin of goods for Customs purposes.
+          example: T2
+          type: string
+        commissionInfo:
+          $ref: "#/components/schemas/CommissionInfo"
+        salesIncentive:
+          $ref: "#/components/schemas/SalesIncentive"
+        agentFileReference:
+          description: Agent file reference used to identify a specific booking or
+            file.
+          example: "123456"
+          type: string
+        nominatedHandlingParty:
+          $ref: "#/components/schemas/NominatedHandlingParty"
+        shipmentReferenceInformation:
+          $ref: "#/components/schemas/ShipmentReferenceInfo"
+        otherParticipant:
+          description: Array of other participant information.
+          items:
+            $ref: "#/components/schemas/OtherParticipant"
+          type: array
+          example: null
+        oci:
+          description: "Array of other customs, security and regulatory control information."
+          items:
+            $ref: "#/components/schemas/OCI"
+          type: array
+          example: null
       required:
-      - airWaybillNumber
-      - carriersExecution
-      - chargeDeclarations
-      - chargeItems
-      - consignee
-      - destination
       - id
       - messageHeader
-      - origin
-      - route
-      - senderReference
-      - shipper
-      - totalConsignmentNumberOfPieces
-      - weight
+      - type
       type: object
     AirlineFlightManifest:
       description: An airline flight manifest (FFM) is a notification of details of
@@ -992,34 +999,44 @@ components:
       - pointOfUnloading
       type: object
     AirlineFlightManifestMessage:
-      allOf:
-      - $ref: "#/components/schemas/MessageObject"
-      - properties:
-          messageSequence:
-            description: The message sequence provides compatibility with Cargo IMP.
-              The first sequence number is '1'.
-            format: int32
-            type: integer
-          hasContinuation:
-            description: Indicated the presence of a related message. That message
-              will contain the next higher sequence number.
-            type: boolean
-          flightIdAndPointOfLoading:
-            $ref: "#/components/schemas/FlightIdAndPointOfLoading"
-          pointOfUnloading:
-            items:
-              $ref: "#/components/schemas/PointOfUnloading"
-            type: array
-        type: object
       description: Cargo Canonical message containing an Airline Flight Manifest as
         payload.
+      properties:
+        type:
+          description: "[Message Base] "
+          type: string
+          example: null
+        id:
+          description: "[Message Base] Unique identification of the message."
+          format: uuid
+          type: string
+          example: null
+        messageHeader:
+          $ref: "#/components/schemas/MessageHeader"
+        messageSequence:
+          description: |-
+            [Payload Fields]
+            The message sequence provides compatibility with Cargo IMP. The first sequence number is '1'.
+          format: int32
+          type: integer
+          example: null
+        hasContinuation:
+          description: Indicated the presence of a related message. That message will
+            contain the next higher sequence number.
+          type: boolean
+          example: null
+        flightIdAndPointOfLoading:
+          $ref: "#/components/schemas/FlightIdAndPointOfLoading"
+        pointOfUnloading:
+          description: ""
+          items:
+            $ref: "#/components/schemas/PointOfUnloading"
+          type: array
+          example: null
       required:
-      - flightIdAndPointOfLoading
-      - hasContinuation
       - id
       - messageHeader
-      - messageSequence
-      - pointOfUnloading
+      - type
       type: object
     AirmailRequest:
       properties:
@@ -1061,48 +1078,66 @@ components:
       - transportInformations
       type: object
     AirmailRequestMessage:
-      allOf:
-      - $ref: "#/components/schemas/MessageObject"
-      - properties:
-          consignmentInformation:
-            $ref: "#/components/schemas/ConsignmentInformation"
-          consignmentSecurityInformation:
-            $ref: "#/components/schemas/ConsignmentSecurityInformation"
-          applicableRegulationInformations:
-            items:
-              $ref: "#/components/schemas/ApplicableRegulationInformation"
-            type: array
-          preConsigningNotificationAuthorityAndRegulations:
-            items:
-              $ref: "#/components/schemas/PreConsigningNotificationAuthorityAndRegulation"
-            type: array
-          totalsInformations:
-            items:
-              $ref: "#/components/schemas/TotalsInformation"
-            type: array
-          handoverOriginInformation:
-            $ref: "#/components/schemas/HandoverOriginInformation"
-          handoverDestinationInformation:
-            $ref: "#/components/schemas/HandoverDestinationInformation"
-          transportInformations:
-            items:
-              $ref: "#/components/schemas/TransportInformation"
-            type: array
-          containerInformations:
-            items:
-              $ref: "#/components/schemas/ContainerInformation"
-            type: array
-          receptacleInformations:
-            items:
-              $ref: "#/components/schemas/ReceptacleInformation"
-            type: array
-        type: object
+      properties:
+        type:
+          description: "[Message Base] "
+          type: string
+          example: null
+        id:
+          description: "[Message Base] Unique identification of the message."
+          format: uuid
+          type: string
+          example: null
+        messageHeader:
+          $ref: "#/components/schemas/MessageHeader"
+        consignmentInformation:
+          $ref: "#/components/schemas/ConsignmentInformation"
+        consignmentSecurityInformation:
+          $ref: "#/components/schemas/ConsignmentSecurityInformation"
+        applicableRegulationInformations:
+          description: ""
+          items:
+            $ref: "#/components/schemas/ApplicableRegulationInformation"
+          type: array
+          example: null
+        preConsigningNotificationAuthorityAndRegulations:
+          description: ""
+          items:
+            $ref: "#/components/schemas/PreConsigningNotificationAuthorityAndRegulation"
+          type: array
+          example: null
+        totalsInformations:
+          description: ""
+          items:
+            $ref: "#/components/schemas/TotalsInformation"
+          type: array
+          example: null
+        handoverOriginInformation:
+          $ref: "#/components/schemas/HandoverOriginInformation"
+        handoverDestinationInformation:
+          $ref: "#/components/schemas/HandoverDestinationInformation"
+        transportInformations:
+          description: ""
+          items:
+            $ref: "#/components/schemas/TransportInformation"
+          type: array
+          example: null
+        containerInformations:
+          description: ""
+          items:
+            $ref: "#/components/schemas/ContainerInformation"
+          type: array
+          example: null
+        receptacleInformations:
+          description: ""
+          items:
+            $ref: "#/components/schemas/ReceptacleInformation"
+          type: array
+          example: null
       required:
-      - consignmentInformation
       - id
       - messageHeader
-      - totalsInformations
-      - transportInformations
+      - type
       type: object
     ApplicableRegulationInformation:
       properties:
@@ -1720,72 +1755,87 @@ components:
       - rejected
       type: object
     ConfirmationReceiptMessage:
-      allOf:
-      - $ref: "#/components/schemas/MessageObject"
-      - properties:
-          referencedMessageType:
-            description: Enumeration for Cargo Canonical message interchange types.
-            enum:
-            - AirWayBillDataRequest
-            - AirWayBill
-            - Cancellation
-            - ErrorMessage
-            - UNKNOWN
-            - CustomsStatusNotification
-            - FreightBookedList
-            - SpaceAllocationRequest
-            - SpaceAllocationAnswer
-            - SpaceAllocationChange
-            - FlightManifest
-            - ConsolidationList
-            - Acknowledgement
-            - StatusRequest
-            - StatusAnswer
-            - StatusUpdate
-            - RateInformationAnswer
-            - ScheduleAndAvailabilityRequest
-            - ScheduleAndAvailabilityAnswer
-            - CCSFreeText
-            - HouseWaybillData
-            - ScheduleInformationRequest
-            - HouweWaybillStatusRequest
-            - HouseWaybillStatusAnswer
-            - HouseWaybillStatusUpdate
-            - AllotmentInformationRequest
-            - AllotmentInformationAnswer
-            - Defective
-            - GenericRequest
-            type: string
-          airWaybillNumber:
-            description: Air waybill number of the original message.
-            type: string
-          origin:
-            description: Origin airport code of the original message.
-            type: string
-          destination:
-            description: Destination airport code of the original message.
-            type: string
-          rejected:
-            description: Flag indicating if the original message was rejected with
-              an error.
-            type: boolean
-          textMessage:
-            description: Message body of the confirmation receipt. This should be
-              the reason for acknowledgement or the reason for rejection or error.
-            example: Invalid AWB number
-            type: string
-          referenceMessageContent:
-            description: Content of the original message in its original message format.
-            example: |-
-              FSR
-              157-97631844
-            type: string
-        type: object
       description: Cargo Canonical message containing a ConfirmationReceipt as payload.
+      properties:
+        type:
+          description: "[Message Base] "
+          type: string
+          example: null
+        id:
+          description: "[Message Base] Unique identification of the message."
+          format: uuid
+          type: string
+          example: null
+        messageHeader:
+          $ref: "#/components/schemas/MessageHeader"
+        referencedMessageType:
+          description: |-
+            [Payload Fields]
+            Enumeration for Cargo Canonical message interchange types.
+          enum:
+          - AirWayBillDataRequest
+          - AirWayBill
+          - Cancellation
+          - ErrorMessage
+          - UNKNOWN
+          - CustomsStatusNotification
+          - FreightBookedList
+          - SpaceAllocationRequest
+          - SpaceAllocationAnswer
+          - SpaceAllocationChange
+          - FlightManifest
+          - ConsolidationList
+          - Acknowledgement
+          - StatusRequest
+          - StatusAnswer
+          - StatusUpdate
+          - RateInformationAnswer
+          - ScheduleAndAvailabilityRequest
+          - ScheduleAndAvailabilityAnswer
+          - CCSFreeText
+          - HouseWaybillData
+          - ScheduleInformationRequest
+          - HouweWaybillStatusRequest
+          - HouseWaybillStatusAnswer
+          - HouseWaybillStatusUpdate
+          - AllotmentInformationRequest
+          - AllotmentInformationAnswer
+          - Defective
+          - GenericRequest
+          type: string
+          example: null
+        airWaybillNumber:
+          description: Air waybill number of the original message.
+          type: string
+          example: null
+        origin:
+          description: Origin airport code of the original message.
+          type: string
+          example: null
+        destination:
+          description: Destination airport code of the original message.
+          type: string
+          example: null
+        rejected:
+          description: Flag indicating if the original message was rejected with an
+            error.
+          type: boolean
+          example: null
+        textMessage:
+          description: Message body of the confirmation receipt. This should be the
+            reason for acknowledgement or the reason for rejection or error.
+          example: Invalid AWB number
+          type: string
+        referenceMessageContent:
+          description: Content of the original message in its original message format.
+          example: |-
+            FSR
+            157-97631844
+          type: string
       required:
       - id
       - messageHeader
-      - rejected
+      - type
       type: object
     ConsigneeNotified:
       allOf:
@@ -2103,36 +2153,45 @@ components:
       - quantity
       type: object
     ConsolidationListMessage:
-      allOf:
-      - $ref: "#/components/schemas/MessageObject"
-      - properties:
-          airWaybillNumber:
-            description: Contains the air waybill number.
-            type: string
-          originAndDestination:
-            $ref: "#/components/schemas/OriginAndDestination"
-          quantity:
-            $ref: "#/components/schemas/Quantity"
-          houseWaybillSummaries:
-            description: Array of house waybill summary details.
-            items:
-              $ref: "#/components/schemas/HouseWaybillSummary"
-            type: array
-          shipper:
-            $ref: "#/components/schemas/AccountContact"
-          consignee:
-            $ref: "#/components/schemas/AccountContact"
-          chargeDeclarations:
-            $ref: "#/components/schemas/ChargeDeclarations"
-        type: object
       description: Cargo Canonical message containing a ConsolidationList as payload.
+      properties:
+        type:
+          description: "[Message Base] "
+          type: string
+          example: null
+        id:
+          description: "[Message Base] Unique identification of the message."
+          format: uuid
+          type: string
+          example: null
+        messageHeader:
+          $ref: "#/components/schemas/MessageHeader"
+        airWaybillNumber:
+          description: |-
+            [Payload Fields]
+            Contains the air waybill number.
+          type: string
+          example: null
+        originAndDestination:
+          $ref: "#/components/schemas/OriginAndDestination"
+        quantity:
+          $ref: "#/components/schemas/Quantity"
+        houseWaybillSummaries:
+          description: Array of house waybill summary details.
+          items:
+            $ref: "#/components/schemas/HouseWaybillSummary"
+          type: array
+          example: null
+        shipper:
+          $ref: "#/components/schemas/AccountContact"
+        consignee:
+          $ref: "#/components/schemas/AccountContact"
+        chargeDeclarations:
+          $ref: "#/components/schemas/ChargeDeclarations"
       required:
-      - airWaybillNumber
-      - houseWaybillSummaries
       - id
       - messageHeader
-      - originAndDestination
-      - quantity
+      - type
       type: object
     ContactDetail:
       description: Contact Details.
@@ -2455,62 +2514,85 @@ components:
       - flightNumber
       type: object
     CustomsStatusNotificationMessage:
-      allOf:
-      - $ref: "#/components/schemas/MessageObject"
-      - properties:
-          airWaybillNumber:
-            description: Contains the air waybill number.
-            type: string
-          isMasterAWB:
-            description: "Master AWB Indication, included if House Waybills are associated\
-              \ with the AWB."
-            type: boolean
-          houseWayBillSerialNumber:
-            description: House Waybill Serial Number if applicable.
-            example: 12345678ABCD
-            type: string
-          relation:
-            description: Optional information on whether the message is security or
-              customs related. Background. CIMP CSN messages are often used to convey
-              security information.
-            enum:
-            - Customs
-            - Security
-            type: string
-          iataCarrierCode:
-            description: IATA Code for the flight's carrier if known. At least one
-              of iataCarrierCode or icaoCarrierCode has to be provided.
-            type: string
-          icaoCarrierCode:
-            description: IATA Code for the flight's carrier if known. At least one
-              of iataCarrierCode or icaoCarrierCode has to be provided.
-            type: string
-          flightNumber:
-            type: string
-          airportCodeOfLoading:
-            type: string
-          airportCodeOfUnloading:
-            type: string
-          dateOfScheduledArrival:
-            format: date
-            type: string
-          airportCodeOfFirstEntryPoint:
-            type: string
-          customsActions:
-            items:
-              $ref: "#/components/schemas/CustomsAction"
-            type: array
-        type: object
       description: Cargo Canonical message containing a Customs Status Notification
         as payload.
+      properties:
+        type:
+          description: "[Message Base] "
+          type: string
+          example: null
+        id:
+          description: "[Message Base] Unique identification of the message."
+          format: uuid
+          type: string
+          example: null
+        messageHeader:
+          $ref: "#/components/schemas/MessageHeader"
+        airWaybillNumber:
+          description: |-
+            [Payload Fields]
+            Contains the air waybill number.
+          type: string
+          example: null
+        isMasterAWB:
+          description: "Master AWB Indication, included if House Waybills are associated\
+            \ with the AWB."
+          type: boolean
+          example: null
+        houseWayBillSerialNumber:
+          description: House Waybill Serial Number if applicable.
+          example: 12345678ABCD
+          type: string
+        relation:
+          description: Optional information on whether the message is security or
+            customs related. Background. CIMP CSN messages are often used to convey
+            security information.
+          enum:
+          - Customs
+          - Security
+          type: string
+          example: null
+        iataCarrierCode:
+          description: IATA Code for the flight's carrier if known. At least one of
+            iataCarrierCode or icaoCarrierCode has to be provided.
+          type: string
+          example: null
+        icaoCarrierCode:
+          description: IATA Code for the flight's carrier if known. At least one of
+            iataCarrierCode or icaoCarrierCode has to be provided.
+          type: string
+          example: null
+        flightNumber:
+          description: ""
+          type: string
+          example: null
+        airportCodeOfLoading:
+          description: ""
+          type: string
+          example: null
+        airportCodeOfUnloading:
+          description: ""
+          type: string
+          example: null
+        dateOfScheduledArrival:
+          description: ""
+          format: date
+          type: string
+          example: null
+        airportCodeOfFirstEntryPoint:
+          description: ""
+          type: string
+          example: null
+        customsActions:
+          description: ""
+          items:
+            $ref: "#/components/schemas/CustomsAction"
+          type: array
+          example: null
       required:
-      - airWaybillNumber
-      - airportCodeOfLoading
-      - airportCodeOfUnloading
-      - dateOfScheduledArrival
-      - flightNumber
       - id
       - messageHeader
+      - type
       type: object
     Delivered:
       allOf:
@@ -2850,28 +2932,39 @@ components:
       - consignments
       type: object
     FlightHistoryMessage:
-      allOf:
-      - $ref: "#/components/schemas/MessageObject"
-      - properties:
-          airWaybillNumber:
-            description: Contains the air way bill number.
-            type: string
-          consignments:
-            description: Array of consignment details.
-            items:
-              $ref: "#/components/schemas/SplitConsignment"
-            type: array
-          otherServiceInformation:
-            description: "Other service information: Remarks relating to a shipment."
-            example: Extra charge due to special handling requirements.
-            type: string
-        type: object
       description: Cargo Canonical message containing a FlightHistory as payload.
+      properties:
+        type:
+          description: "[Message Base] "
+          type: string
+          example: null
+        id:
+          description: "[Message Base] Unique identification of the message."
+          format: uuid
+          type: string
+          example: null
+        messageHeader:
+          $ref: "#/components/schemas/MessageHeader"
+        airWaybillNumber:
+          description: |-
+            [Payload Fields]
+            Contains the air way bill number.
+          type: string
+          example: null
+        consignments:
+          description: Array of consignment details.
+          items:
+            $ref: "#/components/schemas/SplitConsignment"
+          type: array
+          example: null
+        otherServiceInformation:
+          description: "Other service information: Remarks relating to a shipment."
+          example: Extra charge due to special handling requirements.
+          type: string
       required:
-      - airWaybillNumber
-      - consignments
       - id
       - messageHeader
+      - type
       type: object
     FlightIdAndPointOfLoading:
       description: Describes the flight and the point of unloading
@@ -2926,45 +3019,56 @@ components:
       - totalNumberOfPieces
       type: object
     FlightStatusMessage:
-      allOf:
-      - $ref: "#/components/schemas/MessageObject"
-      - properties:
-          airWaybillNumber:
-            description: Contains the air waybill number.
-            type: string
-          originAndDestination:
-            $ref: "#/components/schemas/OriginAndDestination"
-          quantity:
-            $ref: "#/components/schemas/Quantity"
-          totalNumberOfPieces:
-            description: Total number of pieces of the consignment.
-            example: 20
-            type: integer
-          events:
-            description: List of flight events related to the flight status. Will
-              often be only one event.
-            items:
-              $ref: "#/components/schemas/FlightEvent"
-            type: array
-          truckingEvents:
-            description: List of trucking events related to the flight status.
-            items:
-              $ref: "#/components/schemas/TruckingEvent"
-            type: array
-          otherCustomsSecurityAndRegulatoryInformation:
-            $ref: "#/components/schemas/OtherCustomsSecurityAndRegulatoryInformation"
-          otherServiceInformation:
-            description: "Other service information: Remarks relating to a shipment."
-            example: Extra charge due to special handling requirements.
-            type: string
-        type: object
       description: Cargo Canonical message containing a FlightStatus as payload.
+      properties:
+        type:
+          description: "[Message Base] "
+          type: string
+          example: null
+        id:
+          description: "[Message Base] Unique identification of the message."
+          format: uuid
+          type: string
+          example: null
+        messageHeader:
+          $ref: "#/components/schemas/MessageHeader"
+        airWaybillNumber:
+          description: |-
+            [Payload Fields]
+            Contains the air waybill number.
+          type: string
+          example: null
+        originAndDestination:
+          $ref: "#/components/schemas/OriginAndDestination"
+        quantity:
+          $ref: "#/components/schemas/Quantity"
+        totalNumberOfPieces:
+          description: Total number of pieces of the consignment.
+          example: 20
+          type: integer
+        events:
+          description: List of flight events related to the flight status. Will often
+            be only one event.
+          items:
+            $ref: "#/components/schemas/FlightEvent"
+          type: array
+          example: null
+        truckingEvents:
+          description: List of trucking events related to the flight status.
+          items:
+            $ref: "#/components/schemas/TruckingEvent"
+          type: array
+          example: null
+        otherCustomsSecurityAndRegulatoryInformation:
+          $ref: "#/components/schemas/OtherCustomsSecurityAndRegulatoryInformation"
+        otherServiceInformation:
+          description: "Other service information: Remarks relating to a shipment."
+          example: Extra charge due to special handling requirements.
+          type: string
       required:
-      - airWaybillNumber
       - id
       - messageHeader
-      - quantity
-      - totalNumberOfPieces
+      - type
       type: object
     FlightStatusRequest:
       description: A request for the current status of a nominated consignment.
@@ -2993,35 +3097,47 @@ components:
       - airWaybillNumber
       type: object
     FlightStatusRequestMessage:
-      allOf:
-      - $ref: "#/components/schemas/MessageObject"
-      - properties:
-          airWaybillNumber:
-            description: Contains the air waybill number.
-            type: string
-          originAndDestination:
-            $ref: "#/components/schemas/OriginAndDestination"
-          quantity:
-            $ref: "#/components/schemas/Quantity"
-          natureOfGoods:
-            description: Description of the goods for manifest purposes.
-            example: Black hats and sunglasses.
-            type: string
-          flightDetailsList:
-            description: Array of flight details for the regarded consignment.
-            items:
-              $ref: "#/components/schemas/FlightDetails"
-            type: array
-          otherServiceInformation:
-            description: "Other service information: Remarks relating to a shipment."
-            example: Extra charge due to special handling requirements.
-            type: string
-        type: object
       description: Cargo Canonical message containing a FlightStatusRequest as payload.
+      properties:
+        type:
+          description: "[Message Base] "
+          type: string
+          example: null
+        id:
+          description: "[Message Base] Unique identification of the message."
+          format: uuid
+          type: string
+          example: null
+        messageHeader:
+          $ref: "#/components/schemas/MessageHeader"
+        airWaybillNumber:
+          description: |-
+            [Payload Fields]
+            Contains the air waybill number.
+          type: string
+          example: null
+        originAndDestination:
+          $ref: "#/components/schemas/OriginAndDestination"
+        quantity:
+          $ref: "#/components/schemas/Quantity"
+        natureOfGoods:
+          description: Description of the goods for manifest purposes.
+          example: Black hats and sunglasses.
+          type: string
+        flightDetailsList:
+          description: Array of flight details for the regarded consignment.
+          items:
+            $ref: "#/components/schemas/FlightDetails"
+          type: array
+          example: null
+        otherServiceInformation:
+          description: "Other service information: Remarks relating to a shipment."
+          example: Extra charge due to special handling requirements.
+          type: string
       required:
-      - airWaybillNumber
       - id
       - messageHeader
+      - type
       type: object
     FreightInWarehouse:
       allOf:
@@ -3412,236 +3528,266 @@ components:
       - weight
       type: object
     HouseWaybillMessage:
-      allOf:
-      - $ref: "#/components/schemas/MessageObject"
-      - properties:
-          airWaybillNumber:
+      description: Cargo Canonical message containing a HouseWaybill as payload.
+      properties:
+        type:
+          description: "[Message Base] "
+          type: string
+          example: null
+        id:
+          description: "[Message Base] Unique identification of the message."
+          format: uuid
+          type: string
+          example: null
+        messageHeader:
+          $ref: "#/components/schemas/MessageHeader"
+        airWaybillNumber:
+          description: |
+            [Payload Fields]
+          type: string
+          example: null
+        origin:
+          description: ""
+          type: string
+          example: null
+        destination:
+          description: ""
+          type: string
+          example: null
+        serialNumber:
+          description: The house way bill serial number
+          example: LON123456789
+          type: string
+        numberOfPieces:
+          description: ""
+          format: int32
+          type: integer
+          example: null
+        weight:
+          $ref: "#/components/schemas/Weight"
+        flights:
+          description: ""
+          items:
+            $ref: "#/components/schemas/Flight"
+          type: array
+          example: null
+        route:
+          description: ""
+          items:
+            $ref: "#/components/schemas/Routing"
+          type: array
+          example: null
+        shipper:
+          $ref: "#/components/schemas/AccountContact"
+        consignee:
+          $ref: "#/components/schemas/AccountContact"
+        agent:
+          $ref: "#/components/schemas/AgentIdentification"
+        specialServiceRequest:
+          description: ""
+          example: En close pouch with export documents
+          type: string
+        alsoNotify:
+          $ref: "#/components/schemas/AccountContact"
+        accounting:
+          description: ""
+          items:
+            $ref: "#/components/schemas/Accounting"
+          type: array
+          example: null
+        chargeDeclarations:
+          $ref: "#/components/schemas/ChargeDeclarations"
+        chargeItems:
+          description: ""
+          items:
+            $ref: "#/components/schemas/ChargeItem"
+          type: array
+          example: null
+        otherCharges:
+          description: ""
+          items:
+            $ref: "#/components/schemas/OtherChargeItem"
+          type: array
+          example: null
+        prepaidChargeSummary:
+          $ref: "#/components/schemas/ChargeSummary"
+        collectChargeSummary:
+          $ref: "#/components/schemas/ChargeSummary"
+        shippersCertification:
+          description: ""
+          type: string
+          example: null
+        carriersExecution:
+          $ref: "#/components/schemas/CarriersExecution"
+        otherServiceInformation:
+          description: ""
+          example: not secured
+          type: string
+        customsOriginCode:
+          description: ""
+          type: string
+          example: null
+        agentsHeadOffice:
+          $ref: "#/components/schemas/AccountContact"
+        letterOfCredit:
+          description: ""
+          type: string
+          example: null
+        otherParticipant:
+          description: ""
+          items:
+            $ref: "#/components/schemas/OtherParticipant"
+          type: array
+          example: null
+        specialHandlingCodes:
+          description: ""
+          items:
+            description: Enumeration of codes for special handling and dangerous goods.
+            enum:
+            - ACT
+            - AOG
+            - BUP
+            - CAO
+            - CAT
+            - NSC
+            - SHR
+            - COM
+            - ECP
+            - ECC
+            - CRT
+            - COL
+            - RDS
+            - DIP
+            - EAP
+            - EAW
+            - EMD
+            - REQ
+            - RRE
+            - PES
+            - PEF
+            - EAT
+            - FRI
+            - FRO
+            - PEP
+            - ATT
+            - GOH
+            - HEG
+            - HEA
+            - HUM
+            - PEA
+            - SCO
+            - SPF
+            - SPX
+            - LIC
+            - AVI
+            - LHO
+            - MAL
+            - PEM
+            - MUW
+            - NWP
+            - OBX
+            - BIG
+            - OHG
+            - PAC
+            - PER
+            - PIL
+            - XPS
+            - QRT
+            - RAC
+            - SHL
+            - WET
+            - SWP
+            - SUR
+            - FIL
+            - VAL
+            - VIC
+            - VOL
+            - VUN
+            - PEB
+            - PHY
+            - VAG
+            - FSA
+            - XPH
+            - AER
+            - VIP
+            - UCB
+            - XPU
+            - MON
+            - PEV
+            - ART
+            - BSD
+            - BPL
+            - CSL
+            - DGR
+            - NOS
+            - PPL
+            - SEC
+            - SMU
+            - ZXF
+            - ZXO
+            - TRZ
+            - GEN
+            - ELI
+            - ELM
+            - RCM
+            - RCL
+            - RFW
+            - ICE
+            - REX
+            - RCX
+            - RGX
+            - RLI
+            - RLM
+            - RXB
+            - RXC
+            - RXD
+            - RXE
+            - RXG
+            - RXS
+            - RFG
+            - RFL
+            - RFS
+            - RIS
+            - MAG
+            - RMD
+            - RNG
+            - ROP
+            - ROX
+            - RPB
+            - RPG
+            - RSB
+            - RRW
+            - RRY
+            - RSC
+            - CIC
+            - ERT
+            - NST
+            - PIP
             type: string
-          origin:
-            type: string
-          destination:
-            type: string
-          serialNumber:
-            description: The house way bill serial number
-            example: LON123456789
-            type: string
-          numberOfPieces:
-            format: int32
-            type: integer
-          weight:
-            $ref: "#/components/schemas/Weight"
-          flights:
-            items:
-              $ref: "#/components/schemas/Flight"
-            type: array
-          route:
-            items:
-              $ref: "#/components/schemas/Routing"
-            type: array
-          shipper:
-            $ref: "#/components/schemas/AccountContact"
-          consignee:
-            $ref: "#/components/schemas/AccountContact"
-          agent:
-            $ref: "#/components/schemas/AgentIdentification"
-          specialServiceRequest:
-            example: En close pouch with export documents
-            type: string
-          alsoNotify:
-            $ref: "#/components/schemas/AccountContact"
-          accounting:
-            items:
-              $ref: "#/components/schemas/Accounting"
-            type: array
-          chargeDeclarations:
-            $ref: "#/components/schemas/ChargeDeclarations"
-          chargeItems:
-            items:
-              $ref: "#/components/schemas/ChargeItem"
-            type: array
-          otherCharges:
-            items:
-              $ref: "#/components/schemas/OtherChargeItem"
-            type: array
-          prepaidChargeSummary:
-            $ref: "#/components/schemas/ChargeSummary"
-          collectChargeSummary:
-            $ref: "#/components/schemas/ChargeSummary"
-          shippersCertification:
-            type: string
-          carriersExecution:
-            $ref: "#/components/schemas/CarriersExecution"
-          otherServiceInformation:
-            example: not secured
-            type: string
-          customsOriginCode:
-            type: string
-          agentsHeadOffice:
-            $ref: "#/components/schemas/AccountContact"
-          letterOfCredit:
-            type: string
-          otherParticipant:
-            items:
-              $ref: "#/components/schemas/OtherParticipant"
-            type: array
-          specialHandlingCodes:
-            items:
-              description: Enumeration of codes for special handling and dangerous
-                goods.
-              enum:
-              - ACT
-              - AOG
-              - BUP
-              - CAO
-              - CAT
-              - NSC
-              - SHR
-              - COM
-              - ECP
-              - ECC
-              - CRT
-              - COL
-              - RDS
-              - DIP
-              - EAP
-              - EAW
-              - EMD
-              - REQ
-              - RRE
-              - PES
-              - PEF
-              - EAT
-              - FRI
-              - FRO
-              - PEP
-              - ATT
-              - GOH
-              - HEG
-              - HEA
-              - HUM
-              - PEA
-              - SCO
-              - SPF
-              - SPX
-              - LIC
-              - AVI
-              - LHO
-              - MAL
-              - PEM
-              - MUW
-              - NWP
-              - OBX
-              - BIG
-              - OHG
-              - PAC
-              - PER
-              - PIL
-              - XPS
-              - QRT
-              - RAC
-              - SHL
-              - WET
-              - SWP
-              - SUR
-              - FIL
-              - VAL
-              - VIC
-              - VOL
-              - VUN
-              - PEB
-              - PHY
-              - VAG
-              - FSA
-              - XPH
-              - AER
-              - VIP
-              - UCB
-              - XPU
-              - MON
-              - PEV
-              - ART
-              - BSD
-              - BPL
-              - CSL
-              - DGR
-              - NOS
-              - PPL
-              - SEC
-              - SMU
-              - ZXF
-              - ZXO
-              - TRZ
-              - GEN
-              - ELI
-              - ELM
-              - RCM
-              - RCL
-              - RFW
-              - ICE
-              - REX
-              - RCX
-              - RGX
-              - RLI
-              - RLM
-              - RXB
-              - RXC
-              - RXD
-              - RXE
-              - RXG
-              - RXS
-              - RFG
-              - RFL
-              - RFS
-              - RIS
-              - MAG
-              - RMD
-              - RNG
-              - ROP
-              - ROX
-              - RPB
-              - RPG
-              - RSB
-              - RRW
-              - RRY
-              - RSC
-              - CIC
-              - ERT
-              - NST
-              - PIP
-              type: string
-            type: array
-            uniqueItems: true
-          additionalSpecialHandlingCodes:
+          type: array
+          example: null
+        additionalSpecialHandlingCodes:
+          description: Special handling codes that are not covered by the enumeration
+            type of field 'specialHandlingCodes'.
+          example: FOO
+          items:
             description: Special handling codes that are not covered by the enumeration
               type of field 'specialHandlingCodes'.
             example: FOO
-            items:
-              description: Special handling codes that are not covered by the enumeration
-                type of field 'specialHandlingCodes'.
-              example: FOO
-              type: string
-            type: array
-            uniqueItems: true
-          shipmentReferenceInformation:
-            $ref: "#/components/schemas/ShipmentReferenceInfo"
-          oci:
-            items:
-              $ref: "#/components/schemas/OCI"
-            type: array
-        type: object
-      description: Cargo Canonical message containing a HouseWaybill as payload.
+            type: string
+          type: array
+        shipmentReferenceInformation:
+          $ref: "#/components/schemas/ShipmentReferenceInfo"
+        oci:
+          description: ""
+          items:
+            $ref: "#/components/schemas/OCI"
+          type: array
+          example: null
       required:
-      - agentsHeadOffice
-      - airWaybillNumber
-      - carriersExecution
-      - chargeDeclarations
-      - destination
       - id
       - messageHeader
-      - numberOfPieces
-      - origin
-      - serialNumber
-      - weight
+      - type
       type: object
     HouseWaybillSummary:
       description: House waybill summary details.
@@ -5244,184 +5390,190 @@ components:
       - quantity
       type: object
     SpaceAllocationAnswerMessage:
-      allOf:
-      - $ref: "#/components/schemas/MessageObject"
-      - properties:
-          airWaybillNumber:
-            description: Contains the air waybill number.
-            type: string
-          originAndDestination:
-            $ref: "#/components/schemas/OriginAndDestination"
-          quantity:
-            $ref: "#/components/schemas/Quantity"
-          volume:
-            $ref: "#/components/schemas/Volume"
-          totalConsignmentPieces:
-            description: Total number of pieces of complete consignment.
-            example: 20
-            format: int32
-            type: integer
-          natureOfGoods:
-            description: Short description of the nature of the contained goods.
-            example: Electronic parts
-            type: string
-          specialHandlingRequirements:
-            description: Array of codes for special handling and dangerous goods.
-            items:
-              description: Enumeration of codes for special handling and dangerous
-                goods.
-              enum:
-              - ACT
-              - AOG
-              - BUP
-              - CAO
-              - CAT
-              - NSC
-              - SHR
-              - COM
-              - ECP
-              - ECC
-              - CRT
-              - COL
-              - RDS
-              - DIP
-              - EAP
-              - EAW
-              - EMD
-              - REQ
-              - RRE
-              - PES
-              - PEF
-              - EAT
-              - FRI
-              - FRO
-              - PEP
-              - ATT
-              - GOH
-              - HEG
-              - HEA
-              - HUM
-              - PEA
-              - SCO
-              - SPF
-              - SPX
-              - LIC
-              - AVI
-              - LHO
-              - MAL
-              - PEM
-              - MUW
-              - NWP
-              - OBX
-              - BIG
-              - OHG
-              - PAC
-              - PER
-              - PIL
-              - XPS
-              - QRT
-              - RAC
-              - SHL
-              - WET
-              - SWP
-              - SUR
-              - FIL
-              - VAL
-              - VIC
-              - VOL
-              - VUN
-              - PEB
-              - PHY
-              - VAG
-              - FSA
-              - XPH
-              - AER
-              - VIP
-              - UCB
-              - XPU
-              - MON
-              - PEV
-              - ART
-              - BSD
-              - BPL
-              - CSL
-              - DGR
-              - NOS
-              - PPL
-              - SEC
-              - SMU
-              - ZXF
-              - ZXO
-              - TRZ
-              - GEN
-              - ELI
-              - ELM
-              - RCM
-              - RCL
-              - RFW
-              - ICE
-              - REX
-              - RCX
-              - RGX
-              - RLI
-              - RLM
-              - RXB
-              - RXC
-              - RXD
-              - RXE
-              - RXG
-              - RXS
-              - RFG
-              - RFL
-              - RFS
-              - RIS
-              - MAG
-              - RMD
-              - RNG
-              - ROP
-              - ROX
-              - RPB
-              - RPG
-              - RSB
-              - RRW
-              - RRY
-              - RSC
-              - CIC
-              - ERT
-              - NST
-              - PIP
-              type: string
-            type: array
-            uniqueItems: true
-          flightDetails:
-            description: Array of flight details for the regarded consignment.
-            items:
-              $ref: "#/components/schemas/FlightDetails"
-            type: array
-          bookingReference:
-            $ref: "#/components/schemas/ReferenceInfo"
-          otherServiceInformation:
-            description: "Other service information: Remarks relating to a shipment."
-            example: Extra charge due to special handling requirements.
-            type: string
-          specialServiceRequest:
-            description: Special Service Request (Information related to instructions
-              for special action required).
-            example: Must be kept above 5 degrees celsius.
-            type: string
-          shipmentReferenceInformation:
-            $ref: "#/components/schemas/ShipmentReferenceInfo"
-        type: object
       description: Cargo Canonical message containing a SpaceAllocationAnswer as payload.
+      properties:
+        type:
+          description: "[Message Base] "
+          type: string
+          example: null
+        id:
+          description: "[Message Base] Unique identification of the message."
+          format: uuid
+          type: string
+          example: null
+        messageHeader:
+          $ref: "#/components/schemas/MessageHeader"
+        airWaybillNumber:
+          description: |-
+            [Payload Fields]
+            Contains the air waybill number.
+          type: string
+          example: null
+        originAndDestination:
+          $ref: "#/components/schemas/OriginAndDestination"
+        quantity:
+          $ref: "#/components/schemas/Quantity"
+        volume:
+          $ref: "#/components/schemas/Volume"
+        totalConsignmentPieces:
+          description: Total number of pieces of complete consignment.
+          example: 20
+          format: int32
+          type: integer
+        natureOfGoods:
+          description: Short description of the nature of the contained goods.
+          example: Electronic parts
+          type: string
+        specialHandlingRequirements:
+          description: Array of codes for special handling and dangerous goods.
+          items:
+            description: Enumeration of codes for special handling and dangerous goods.
+            enum:
+            - ACT
+            - AOG
+            - BUP
+            - CAO
+            - CAT
+            - NSC
+            - SHR
+            - COM
+            - ECP
+            - ECC
+            - CRT
+            - COL
+            - RDS
+            - DIP
+            - EAP
+            - EAW
+            - EMD
+            - REQ
+            - RRE
+            - PES
+            - PEF
+            - EAT
+            - FRI
+            - FRO
+            - PEP
+            - ATT
+            - GOH
+            - HEG
+            - HEA
+            - HUM
+            - PEA
+            - SCO
+            - SPF
+            - SPX
+            - LIC
+            - AVI
+            - LHO
+            - MAL
+            - PEM
+            - MUW
+            - NWP
+            - OBX
+            - BIG
+            - OHG
+            - PAC
+            - PER
+            - PIL
+            - XPS
+            - QRT
+            - RAC
+            - SHL
+            - WET
+            - SWP
+            - SUR
+            - FIL
+            - VAL
+            - VIC
+            - VOL
+            - VUN
+            - PEB
+            - PHY
+            - VAG
+            - FSA
+            - XPH
+            - AER
+            - VIP
+            - UCB
+            - XPU
+            - MON
+            - PEV
+            - ART
+            - BSD
+            - BPL
+            - CSL
+            - DGR
+            - NOS
+            - PPL
+            - SEC
+            - SMU
+            - ZXF
+            - ZXO
+            - TRZ
+            - GEN
+            - ELI
+            - ELM
+            - RCM
+            - RCL
+            - RFW
+            - ICE
+            - REX
+            - RCX
+            - RGX
+            - RLI
+            - RLM
+            - RXB
+            - RXC
+            - RXD
+            - RXE
+            - RXG
+            - RXS
+            - RFG
+            - RFL
+            - RFS
+            - RIS
+            - MAG
+            - RMD
+            - RNG
+            - ROP
+            - ROX
+            - RPB
+            - RPG
+            - RSB
+            - RRW
+            - RRY
+            - RSC
+            - CIC
+            - ERT
+            - NST
+            - PIP
+            type: string
+          type: array
+          example: null
+        flightDetails:
+          description: Array of flight details for the regarded consignment.
+          items:
+            $ref: "#/components/schemas/FlightDetails"
+          type: array
+          example: null
+        bookingReference:
+          $ref: "#/components/schemas/ReferenceInfo"
+        otherServiceInformation:
+          description: "Other service information: Remarks relating to a shipment."
+          example: Extra charge due to special handling requirements.
+          type: string
+        specialServiceRequest:
+          description: Special Service Request (Information related to instructions
+            for special action required).
+          example: Must be kept above 5 degrees celsius.
+          type: string
+        shipmentReferenceInformation:
+          $ref: "#/components/schemas/ShipmentReferenceInfo"
       required:
-      - airWaybillNumber
-      - bookingReference
-      - flightDetails
       - id
       - messageHeader
-      - natureOfGoods
-      - originAndDestination
-      - quantity
+      - type
       type: object
     SpaceAllocationRequest:
       properties:
@@ -5640,228 +5792,236 @@ components:
       - quantity
       type: object
     SpaceAllocationRequestMessage:
-      allOf:
-      - $ref: "#/components/schemas/MessageObject"
-      - properties:
-          airWaybillNumber:
-            description: Contains the air waybill number.
-            type: string
-          originAndDestination:
-            $ref: "#/components/schemas/OriginAndDestination"
-          quantity:
-            $ref: "#/components/schemas/Quantity"
-          volume:
-            $ref: "#/components/schemas/Volume"
-          densityGroup:
-            description: Enumeration indicating approximate density of goods.
+      description: Cargo Canonical message containing a SpaceAllocationRequest as
+        payload.
+      properties:
+        type:
+          description: "[Message Base] "
+          type: string
+          example: null
+        id:
+          description: "[Message Base] Unique identification of the message."
+          format: uuid
+          type: string
+          example: null
+        messageHeader:
+          $ref: "#/components/schemas/MessageHeader"
+        airWaybillNumber:
+          description: |-
+            [Payload Fields]
+            Contains the air waybill number.
+          type: string
+          example: null
+        originAndDestination:
+          $ref: "#/components/schemas/OriginAndDestination"
+        quantity:
+          $ref: "#/components/schemas/Quantity"
+        volume:
+          $ref: "#/components/schemas/Volume"
+        densityGroup:
+          description: Enumeration indicating approximate density of goods.
+          enum:
+          - KG60_PER_CUBICMETRE
+          - KG90_PER_CUBICMETRE
+          - KG120_PER_CUBICMETRE
+          - KG160_PER_CUBICMETRE
+          - KG220_PER_CUBICMETRE
+          - KG250_PER_CUBICMETRE
+          - KG300_PER_CUBICMETRE
+          - KG400_PER_CUBICMETRE
+          - KG600_PER_CUBICMETRE
+          - KG950_PER_CUBICMETRE
+          type: string
+          example: null
+        totalConsignmentPieces:
+          description: Total number of pieces of complete consignment.
+          example: 20
+          format: int32
+          type: integer
+        natureOfGoods:
+          description: Short description of the nature of the contained goods.
+          example: Electronic parts
+          type: string
+        specialHandlingRequirements:
+          description: Array of codes for special handling and dangerous goods.
+          items:
+            description: Enumeration of codes for special handling and dangerous goods.
             enum:
-            - KG60_PER_CUBICMETRE
-            - KG90_PER_CUBICMETRE
-            - KG120_PER_CUBICMETRE
-            - KG160_PER_CUBICMETRE
-            - KG220_PER_CUBICMETRE
-            - KG250_PER_CUBICMETRE
-            - KG300_PER_CUBICMETRE
-            - KG400_PER_CUBICMETRE
-            - KG600_PER_CUBICMETRE
-            - KG950_PER_CUBICMETRE
+            - ACT
+            - AOG
+            - BUP
+            - CAO
+            - CAT
+            - NSC
+            - SHR
+            - COM
+            - ECP
+            - ECC
+            - CRT
+            - COL
+            - RDS
+            - DIP
+            - EAP
+            - EAW
+            - EMD
+            - REQ
+            - RRE
+            - PES
+            - PEF
+            - EAT
+            - FRI
+            - FRO
+            - PEP
+            - ATT
+            - GOH
+            - HEG
+            - HEA
+            - HUM
+            - PEA
+            - SCO
+            - SPF
+            - SPX
+            - LIC
+            - AVI
+            - LHO
+            - MAL
+            - PEM
+            - MUW
+            - NWP
+            - OBX
+            - BIG
+            - OHG
+            - PAC
+            - PER
+            - PIL
+            - XPS
+            - QRT
+            - RAC
+            - SHL
+            - WET
+            - SWP
+            - SUR
+            - FIL
+            - VAL
+            - VIC
+            - VOL
+            - VUN
+            - PEB
+            - PHY
+            - VAG
+            - FSA
+            - XPH
+            - AER
+            - VIP
+            - UCB
+            - XPU
+            - MON
+            - PEV
+            - ART
+            - BSD
+            - BPL
+            - CSL
+            - DGR
+            - NOS
+            - PPL
+            - SEC
+            - SMU
+            - ZXF
+            - ZXO
+            - TRZ
+            - GEN
+            - ELI
+            - ELM
+            - RCM
+            - RCL
+            - RFW
+            - ICE
+            - REX
+            - RCX
+            - RGX
+            - RLI
+            - RLM
+            - RXB
+            - RXC
+            - RXD
+            - RXE
+            - RXG
+            - RXS
+            - RFG
+            - RFL
+            - RFS
+            - RIS
+            - MAG
+            - RMD
+            - RNG
+            - ROP
+            - ROX
+            - RPB
+            - RPG
+            - RSB
+            - RRW
+            - RRY
+            - RSC
+            - CIC
+            - ERT
+            - NST
+            - PIP
             type: string
-          totalConsignmentPieces:
-            description: Total number of pieces of complete consignment.
-            example: 20
-            format: int32
-            type: integer
-          natureOfGoods:
-            description: Short description of the nature of the contained goods.
-            example: Electronic parts
-            type: string
-          specialHandlingRequirements:
-            description: Array of codes for special handling and dangerous goods.
-            items:
-              description: Enumeration of codes for special handling and dangerous
-                goods.
-              enum:
-              - ACT
-              - AOG
-              - BUP
-              - CAO
-              - CAT
-              - NSC
-              - SHR
-              - COM
-              - ECP
-              - ECC
-              - CRT
-              - COL
-              - RDS
-              - DIP
-              - EAP
-              - EAW
-              - EMD
-              - REQ
-              - RRE
-              - PES
-              - PEF
-              - EAT
-              - FRI
-              - FRO
-              - PEP
-              - ATT
-              - GOH
-              - HEG
-              - HEA
-              - HUM
-              - PEA
-              - SCO
-              - SPF
-              - SPX
-              - LIC
-              - AVI
-              - LHO
-              - MAL
-              - PEM
-              - MUW
-              - NWP
-              - OBX
-              - BIG
-              - OHG
-              - PAC
-              - PER
-              - PIL
-              - XPS
-              - QRT
-              - RAC
-              - SHL
-              - WET
-              - SWP
-              - SUR
-              - FIL
-              - VAL
-              - VIC
-              - VOL
-              - VUN
-              - PEB
-              - PHY
-              - VAG
-              - FSA
-              - XPH
-              - AER
-              - VIP
-              - UCB
-              - XPU
-              - MON
-              - PEV
-              - ART
-              - BSD
-              - BPL
-              - CSL
-              - DGR
-              - NOS
-              - PPL
-              - SEC
-              - SMU
-              - ZXF
-              - ZXO
-              - TRZ
-              - GEN
-              - ELI
-              - ELM
-              - RCM
-              - RCL
-              - RFW
-              - ICE
-              - REX
-              - RCX
-              - RGX
-              - RLI
-              - RLM
-              - RXB
-              - RXC
-              - RXD
-              - RXE
-              - RXG
-              - RXS
-              - RFG
-              - RFL
-              - RFS
-              - RIS
-              - MAG
-              - RMD
-              - RNG
-              - ROP
-              - ROX
-              - RPB
-              - RPG
-              - RSB
-              - RRW
-              - RRY
-              - RSC
-              - CIC
-              - ERT
-              - NST
-              - PIP
-              type: string
-            type: array
-            uniqueItems: true
-          additionalSpecialHandlingCodes:
+          type: array
+          example: null
+        additionalSpecialHandlingCodes:
+          description: Special handling codes that are not covered by the enumeration
+            type of field 'specialHandlingCodes'.
+          example: FOO
+          items:
             description: Special handling codes that are not covered by the enumeration
               type of field 'specialHandlingCodes'.
             example: FOO
-            items:
-              description: Special handling codes that are not covered by the enumeration
-                type of field 'specialHandlingCodes'.
-              example: FOO
-              type: string
-            type: array
-            uniqueItems: true
-          flightDetails:
-            description: Array of flight details for the regarded consignment.
-            items:
-              $ref: "#/components/schemas/FlightDetails"
-            type: array
-          bookingReference:
-            $ref: "#/components/schemas/ReferenceInfo"
-          uldDescriptions:
-            description: Array of Unit Load Device (ULD) data.
-            items:
-              $ref: "#/components/schemas/ULD"
-            type: array
-          otherServiceInformation:
-            description: "Other service information: Remarks relating to a shipment."
-            example: Extra charge due to special handling requirements.
             type: string
-          specialServiceRequest:
-            description: Special Service Request (Information related to instructions
-              for special action required).
-            example: Must be kept above 5 degrees celsius.
-            type: string
-          dimensionInformation:
-            description: Array of dimensions information.
-            items:
-              $ref: "#/components/schemas/DimensionInfo"
-            type: array
-          shipmentReferenceInformation:
-            $ref: "#/components/schemas/ShipmentReferenceInfo"
-          customerIdentification:
-            $ref: "#/components/schemas/CustomerIdentification"
-          productInformation:
-            $ref: "#/components/schemas/ProductInformation"
-          shipper:
-            $ref: "#/components/schemas/AccountContact"
-          consignee:
-            $ref: "#/components/schemas/AccountContact"
-        type: object
-      description: Cargo Canonical message containing a SpaceAllocationRequest as
-        payload.
+          type: array
+        flightDetails:
+          description: Array of flight details for the regarded consignment.
+          items:
+            $ref: "#/components/schemas/FlightDetails"
+          type: array
+          example: null
+        bookingReference:
+          $ref: "#/components/schemas/ReferenceInfo"
+        uldDescriptions:
+          description: Array of Unit Load Device (ULD) data.
+          items:
+            $ref: "#/components/schemas/ULD"
+          type: array
+          example: null
+        otherServiceInformation:
+          description: "Other service information: Remarks relating to a shipment."
+          example: Extra charge due to special handling requirements.
+          type: string
+        specialServiceRequest:
+          description: Special Service Request (Information related to instructions
+            for special action required).
+          example: Must be kept above 5 degrees celsius.
+          type: string
+        dimensionInformation:
+          description: Array of dimensions information.
+          items:
+            $ref: "#/components/schemas/DimensionInfo"
+          type: array
+          example: null
+        shipmentReferenceInformation:
+          $ref: "#/components/schemas/ShipmentReferenceInfo"
+        customerIdentification:
+          $ref: "#/components/schemas/CustomerIdentification"
+        productInformation:
+          $ref: "#/components/schemas/ProductInformation"
+        shipper:
+          $ref: "#/components/schemas/AccountContact"
+        consignee:
+          $ref: "#/components/schemas/AccountContact"
       required:
-      - airWaybillNumber
-      - bookingReference
-      - flightDetails
       - id
       - messageHeader
-      - natureOfGoods
-      - originAndDestination
-      - quantity
+      - type
       type: object
     SplitConsignment:
       description: Array of consignment details.
@@ -6113,52 +6273,73 @@ components:
           type: string
       type: object
     TruckingStatusMessage:
-      allOf:
-      - $ref: "#/components/schemas/MessageObject"
-      - properties:
-          processType:
-            description: "processType : firstmile or lastmile"
-            enum:
-            - firstmile
-            - lastmile
-            - firstmile_full
-            - lastmile_full
-            type: string
-          airWaybillNumber:
-            description: Contains the air waybill number.
-            type: string
-          originAndDestination:
-            $ref: "#/components/schemas/OriginAndDestination"
-          truckingReferenceNumber:
-            description: Alternate reference for this shipment if no AWB number available.
-            type: string
-          quantity:
-            $ref: "#/components/schemas/Quantity"
-          totalNumberOfPieces:
-            description: Total number of pieces of the consignment.
-            example: 20
-            type: integer
-          events:
-            description: Array of trucking events related to the trucking status.
-              Will often be only one event.
-            items:
-              $ref: "#/components/schemas/TruckingEvent"
-            type: array
-          otherServiceInformation:
-            description: "Other service information: Remarks relating to a shipment."
-            example: Extra charge due to special handling requirements.
-            type: string
-          to:
-            type: string
-          from:
-            type: string
-          signature:
-            type: string
-        type: object
       description: Cargo Canonical message containing a TruckingStatus as payload.
+      properties:
+        type:
+          description: "[Message Base] "
+          type: string
+          example: null
+        id:
+          description: "[Message Base] Unique identification of the message."
+          format: uuid
+          type: string
+          example: null
+        messageHeader:
+          $ref: "#/components/schemas/MessageHeader"
+        processType:
+          description: |-
+            [Payload Fields]
+            processType : firstmile or lastmile
+          enum:
+          - firstmile
+          - lastmile
+          - firstmile_full
+          - lastmile_full
+          type: string
+          example: null
+        airWaybillNumber:
+          description: Contains the air waybill number.
+          type: string
+          example: null
+        originAndDestination:
+          $ref: "#/components/schemas/OriginAndDestination"
+        truckingReferenceNumber:
+          description: Alternate reference for this shipment if no AWB number available.
+          type: string
+          example: null
+        quantity:
+          $ref: "#/components/schemas/Quantity"
+        totalNumberOfPieces:
+          description: Total number of pieces of the consignment.
+          example: 20
+          type: integer
+        events:
+          description: Array of trucking events related to the trucking status. Will
+            often be only one event.
+          items:
+            $ref: "#/components/schemas/TruckingEvent"
+          type: array
+          example: null
+        otherServiceInformation:
+          description: "Other service information: Remarks relating to a shipment."
+          example: Extra charge due to special handling requirements.
+          type: string
+        to:
+          description: ""
+          type: string
+          example: null
+        from:
+          description: ""
+          type: string
+          example: null
+        signature:
+          description: ""
+          type: string
+          example: null
       required:
       - id
       - messageHeader
+      - type
       type: object
     ULD:
       description: Unit Load Device (ULD).
@@ -6256,6 +6437,8 @@ components:
       - unit
       type: object
     MessageObject:
+      description: Internal base class for all message types. This schema is inlined
+        into concrete message types for better documentation readability.
       discriminator:
         propertyName: type
       properties:
