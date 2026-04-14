@@ -6452,6 +6452,20 @@ components:
       description: Polymorphic Cargo Canonical Message. Use the 'type' field to select
         the specific message structure.
       discriminator:
+        mapping:
+          airmail request: "#/components/schemas/AirmailRequestMessage"
+          space allocation answer: "#/components/schemas/SpaceAllocationAnswerMessage"
+          flight history: "#/components/schemas/FlightHistoryMessage"
+          airline flight manifest: "#/components/schemas/AirlineFlightManifestMessage"
+          confirmation receipt: "#/components/schemas/ConfirmationReceiptMessage"
+          flight status: "#/components/schemas/FlightStatusMessage"
+          customs status notification: "#/components/schemas/CustomsStatusNotificationMessage"
+          space allocation request: "#/components/schemas/SpaceAllocationRequestMessage"
+          consolidation list: "#/components/schemas/ConsolidationListMessage"
+          flight status request: "#/components/schemas/FlightStatusRequestMessage"
+          house waybill: "#/components/schemas/HouseWaybillMessage"
+          air way bill: "#/components/schemas/AirWayBillMessage"
+          trucking status: "#/components/schemas/TruckingStatusMessage"
         propertyName: type
       oneOf:
       - $ref: "#/components/schemas/AirWayBillMessage"
