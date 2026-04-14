@@ -4,18 +4,22 @@ import com.fasterxml.jackson.annotation.JsonClassDescription;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyDescription;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-@JsonClassDescription("An airline flight manifest (FFM) is a notification of details of consigments loaded onto a flight or of details of the onward movement of a consigment loaded.")
+@JsonClassDescription("An airline flight manifest (FFM) is a notification of details of consignments loaded onto a flight or of details of the onward movement of a consignment loaded.")
+@Schema(description = "An airline flight manifest (FFM) is a notification of details of consignments loaded onto a flight or of details of the onward movement of a consignment loaded.")
 public class AirlineFlightManifest {
 
     @JsonProperty(required = true)
     @JsonPropertyDescription("The message sequence provides compatibility with Cargo IMP. The first sequence number is '1'.")
+    @Schema(description="The message sequence provides compatibility with Cargo IMP. The first sequence number is '1'.")
     public int messageSequence;
     @JsonPropertyDescription("Indicated the presence of a related message. That message will contain the next higher sequence number.")
+    @Schema(description="Indicated the presence of a related message. That message will contain the next higher sequence number.")
     @JsonProperty(required = true)
     public boolean hasContinuation;
 

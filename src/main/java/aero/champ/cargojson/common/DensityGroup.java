@@ -2,11 +2,13 @@ package aero.champ.cargojson.common;
 
 import com.fasterxml.jackson.annotation.JsonClassDescription;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.util.stream.Stream;
 
 @JsonFormat(shape = JsonFormat.Shape.STRING)
 @JsonClassDescription("Enumeration indicating approximate density of goods.")
+@Schema(description = "Enumeration indicating approximate density of goods.")
 public enum DensityGroup {
 
     KG60_PER_CUBICMETRE(5),

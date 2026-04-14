@@ -1,27 +1,31 @@
 package aero.champ.cargojson.common;
 
-import aero.champ.cargojson.docgen.annotations.JsonDocExample;
 import com.fasterxml.jackson.annotation.*;
+import io.swagger.v3.oas.annotations.media.Schema;
 
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.util.Optional;
 import java.util.regex.Pattern;
 
 @JsonClassDescription("Address of a participant in Cargo Canonical message handling.")
+@Schema(description = "Address of a participant in Cargo Canonical message handling.")
 public class ParticipantAddress {
 
     @JsonProperty(required = true)
     @JsonPropertyDescription("Participant address type.")
-    @JsonDocExample("PIMA")
+    @Schema(description = "Participant address type.", example = "PIMA")
     public final ParticipantAddressType type;
 
     @JsonProperty(required = true)
     @JsonPropertyDescription("The address.")
-    @JsonDocExample("REUAIR08AAL")
+    @Schema(description = "The address.", example = "REUAIR08AAL")
     public final String address;
 
     @JsonCreator
     public ParticipantAddress(@JsonProperty("type") ParticipantAddressType type, @JsonProperty("address") String address) {
         this.type = type;
-        this.address = address;
+        this.address = Optional.ofNullable(address).map(String::trim).orElse(null);
     }
 
     @Override
@@ -61,6 +65,14 @@ public class ParticipantAddress {
             case TTY: return TTY_PATTERN.matcher(address).matches();
             case CARRIER_CODE_3N: return CC3N_PATTERN.matcher(address).matches();
             case IATA_CARRIER_CODE: return IATA_CC_PATTERN.matcher(address).matches();
+            case WEBSITE:
+                try {
+                    URI uri = URI.create(address);
+                    uri.toURL();
+                    return uri.isAbsolute();
+                } catch (MalformedURLException e) {
+                    throw new RuntimeException(e);
+                }
             default: return false;
         }
     }

@@ -4,8 +4,10 @@ import com.fasterxml.jackson.annotation.JsonClassDescription;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyDescription;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 @JsonClassDescription("Origin and destination airports of a shipment.")
+@Schema(description = "Origin and destination airports of a shipment.")
 public class OriginAndDestination {
 
     @JsonCreator
@@ -18,10 +20,12 @@ public class OriginAndDestination {
 
     @JsonProperty(required = true)
     @JsonPropertyDescription("Airport code of origin airport.")
+    @Schema(description="Airport code of origin airport.")
     public final IATAAirportCode origin;
 
     @JsonProperty(required = true)
     @JsonPropertyDescription("Airport code of destination airport.")
+    @Schema(description="Airport code of destination airport.")
     public final IATAAirportCode destination;
 
     @Override

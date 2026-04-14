@@ -2,9 +2,11 @@ package aero.champ.cargojson.common;
 
 import com.fasterxml.jackson.annotation.JsonClassDescription;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 @JsonFormat(shape = JsonFormat.Shape.STRING)
 @JsonClassDescription("Other charge code: Code identifying the type of an individual charge.")
+@Schema(description = "Other charge code: Code identifying the type of an individual charge.")
 public enum OtherChargeCode {
 
     UC("UC", "Adjusting of improperly loaded ULD")
@@ -141,7 +143,11 @@ public enum OtherChargeCode {
     ,XD("XD", "War risk")
     ,FI("FI", "Weighing")
     ,XE("XE", "Weight")
-    ,BM("BM", "Withdrawal of shipment after clearance");
+    ,BM("BM", "Withdrawal of shipment after clearance")
+    ,ZD("ZD", "Sustainability Contribution towards Sustainable Aviation Fuel (SAF)")
+    ,ZE("ZE", "Sustainability Contribution towards reduction of CO2 emissions")
+    ;
+
 
     public final String cargoImpCode;
     public final String description;

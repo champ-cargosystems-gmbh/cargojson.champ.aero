@@ -2,9 +2,11 @@ package aero.champ.cargojson.common;
 
 import com.fasterxml.jackson.annotation.JsonClassDescription;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 @JsonFormat(shape = JsonFormat.Shape.STRING)
 @JsonClassDescription("ULD Loading Indicator: Code indicating ULD height or loading limitation.")
+@Schema(description = "ULD Loading Indicator: Code indicating ULD height or loading limitation.")
 public enum ULDLoadingIndicator {
 
     MAIN_DECK_LOADING_ONLY("M")

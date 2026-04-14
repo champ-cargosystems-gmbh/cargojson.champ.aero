@@ -3,6 +3,7 @@ package aero.champ.cargojson.common;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyDescription;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.util.Optional;
 
@@ -11,6 +12,7 @@ public class Agent {
 
     @JsonProperty(required = true)
     @JsonPropertyDescription("Name of the agent")
+    @Schema(description="Name of the agent")
     public String name;
 
     @JsonProperty(required = true)

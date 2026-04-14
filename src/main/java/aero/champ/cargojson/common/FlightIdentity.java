@@ -1,21 +1,22 @@
 package aero.champ.cargojson.common;
 
-import aero.champ.cargojson.docgen.annotations.JsonDocExample;
 import com.fasterxml.jackson.annotation.*;
+import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.ValidationException;
 
-import javax.validation.ValidationException;
 import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @JsonClassDescription("Flight identification.")
+@Schema(description = "Flight identification.")
 public class FlightIdentity implements Comparable<FlightIdentity> {
 
-    static final Pattern FLIGHT_NUMBER_PATTERN = Pattern.compile("((?:[A-Z][A-Z]|[A-Z][0-9]|[0-9][A-Z]))([0-9]{1,4})([A-Z])?");
+    static final Pattern FLIGHT_NUMBER_PATTERN = Pattern.compile("((?:[A-Z][A-Z]|[A-Z][0-9]|[0-9][A-Z]))([0-9]{1,4})\\s*([A-Z])?");
 
     @JsonCreator
     public FlightIdentity(
-            @javax.validation.constraints.Pattern(regexp = "(?:[A-Z][A-Z]|[A-Z][0-9]|[0-9][A-Z])[0-9]{1,4}[A-Z]?")
+            @jakarta.validation.constraints.Pattern(regexp = "(?:[A-Z][A-Z]|[A-Z][0-9]|[0-9][A-Z])[0-9]{1,4}[A-Z]?")
                     String flightIdentification) {
         this.flightIdentification = normalize(flightIdentification);
     }
@@ -25,11 +26,13 @@ public class FlightIdentity implements Comparable<FlightIdentity> {
         if (!m.matches())
             throw new ValidationException("Flight identification '"+flightIdentification+"' invalid");
         String g2 = m.group(2);
-        if (g2.length() > 2)
-            return flightIdentification;
         if (g2.length() == 1)
             return m.group(1)+"00"+g2+ Optional.ofNullable(m.group(3)).orElse("");
-        return m.group(1)+"0"+g2+ Optional.ofNullable(m.group(3)).orElse("");
+        if (g2.length() == 2)
+            return m.group(1)+"0"+g2+ Optional.ofNullable(m.group(3)).orElse("");
+        if (g2.length() == 4 && g2.charAt(0) == '0')
+            return m.group(1)+g2.substring(1)+ Optional.ofNullable(m.group(3)).orElse("");
+        return m.group(1)+g2+ Optional.ofNullable(m.group(3)).orElse("");
     }
 
     @JsonIgnore
@@ -37,7 +40,7 @@ public class FlightIdentity implements Comparable<FlightIdentity> {
 
     @JsonValue
     @JsonPropertyDescription("Flight identification string that matches the regular expression\n\"(?:[A-Z][A-Z]|[A-Z][0-9]|[0-9][A-Z])[0-9]{1,4}[A-Z]?\"")
-    @JsonDocExample("LH116")
+    @Schema(description = "Flight identification string that matches the regular expression\n\"(?:[A-Z][A-Z]|[A-Z][0-9]|[0-9][A-Z])[0-9]{1,4}[A-Z]?\"", example = "LH116")
     public String value() {
         return flightIdentification;
     }
@@ -55,9 +58,9 @@ public class FlightIdentity implements Comparable<FlightIdentity> {
     @JsonIgnore
     public String flightnumberWithoutSuffix() {
         String fn = flightIdentification.substring(2);
-        if (Character.isDigit(fn.charAt(fn.length()-1)))
+        if (Character.isDigit(fn.charAt(fn.length() - 1)))
             return fn;
-        return fn.substring(0,fn.length()-1);
+        return fn.substring(0, fn.length() - 1);
     }
 
     @Override

@@ -1,12 +1,13 @@
 package aero.champ.cargojson.common;
 
-import aero.champ.cargojson.docgen.annotations.JsonDocExample;
 import com.fasterxml.jackson.annotation.*;
+import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.Pattern;
 
-import javax.validation.constraints.Pattern;
 import java.util.Objects;
 
 @JsonClassDescription("Airport code in IATA format.")
+@Schema(description = "Airport code in IATA format.")
 public class IATAAirportCode {
 
     @JsonIgnore
@@ -18,8 +19,8 @@ public class IATAAirportCode {
     }
 
     @JsonValue
-    @JsonDocExample("FRA")
     @JsonPropertyDescription("Three letter IATA style airport code.")
+    @Schema(description = "Three letter IATA style airport code.", example = "FRA")
     public String code() {
         return code;
     }

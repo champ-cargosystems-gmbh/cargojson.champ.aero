@@ -6,52 +6,66 @@ import aero.champ.cargojson.common.IATAAirportCode;
 import aero.champ.cargojson.common.Volume;
 import aero.champ.cargojson.flightstatus.FlightEvent;
 import com.fasterxml.jackson.annotation.*;
+import io.swagger.v3.oas.annotations.media.Schema;
 
+import java.lang.management.GarbageCollectorMXBean;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Optional;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @JsonClassDescription("This event reports that the consignment was booked on a specific flight.\nConforms to CIMP FSU status 'BKD'.")
+@Schema(description = "This event reports that the consignment was booked on a specific flight.\nConforms to CIMP FSU status 'BKD'.")
 @JsonIgnoreProperties("quantity")
 public class Booked extends FlightEvent {
     public Booked(){}
 
     @JsonPropertyDescription("The flight the consignment was booked on.")
+    @Schema(description = "The flight the consignment was booked on.")
     public Optional<FlightIdentity> flight = Optional.empty();
 
     @JsonPropertyDescription("The departure date of the flight the consignment was booked on.")
+    @Schema(description="The departure date of the flight the consignment was booked on.")
     public Optional<LocalDate> dateOfScheduledDeparture = Optional.empty();
 
     @JsonProperty(required = true)
     @JsonPropertyDescription("The origin airport of the flight.")
+    @Schema(description="The origin airport of the flight.")
     public IATAAirportCode origin;
 
     @JsonProperty(required = true)
     @JsonPropertyDescription("The destination airport of the flight.")
+    @Schema(description="The destination airport of the flight.")
     public IATAAirportCode destination;
 
     @JsonPropertyDescription("The scheduled departure date and time of the flight.")
+    @Schema(description="The scheduled departure date and time of the flight.")
     public Optional<LocalDateTime> timeOfScheduledDeparture = Optional.empty();
 
     @JsonPropertyDescription("The estimated departure date and time of the flight.")
+    @Schema(description="The estimated departure date and time of the flight.")
     public Optional<LocalDateTime> estimatedTimeOfDeparture = Optional.empty();
 
     @JsonPropertyDescription("The scheduled arrival date and time of the flight.")
+    @Schema(description="The scheduled arrival date and time of the flight.")
     public Optional<LocalDateTime> timeOfScheduledArrival = Optional.empty();
 
     @JsonPropertyDescription("The estimated arrival date and time of the flight.")
+    @Schema(description="The estimated arrival date and time of the flight.")
     public Optional<LocalDateTime> estimatedTimeOfArrival = Optional.empty();
 
     @JsonPropertyDescription("Volume data of the consignment.")
+    @Schema(description="Volume data of the consignment.")
     public Optional<Volume> volume = Optional.empty();
 
     @JsonPropertyDescription("Density group - usually given if no volume data is specified.")
+    @Schema(description="Density group - usually given if no volume data is specified.")
     public Optional<DensityGroup> densityGroup = Optional.empty();
 
     @Override
     public Optional<IATAAirportCode> airportOfEvent() {
-        return Optional.of(origin);
+        return Optional.ofNullable(origin);
     }
 
     @Override
@@ -59,5 +73,21 @@ public class Booked extends FlightEvent {
         return flight;
     }
 
+    @Override
+    public Optional<LocalDateTime> departureDate() {
+        return Optional.ofNullable(
+                estimatedTimeOfDeparture
+                        .orElseGet(()-> timeOfScheduledDeparture.orElseGet(
+                                ()-> dateOfScheduledDeparture. map(LocalDate::atStartOfDay)
+                                        .orElse(null)
+                        )));
+    }
+
+    @Override
+    public Optional<LocalDateTime> arrivalDate() {
+        return Optional.ofNullable(
+                estimatedTimeOfArrival
+                        .orElseGet(()-> timeOfScheduledArrival.orElse(null)));
+    }
 
 }

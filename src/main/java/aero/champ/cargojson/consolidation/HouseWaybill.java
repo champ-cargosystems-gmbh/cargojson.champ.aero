@@ -2,10 +2,10 @@ package aero.champ.cargojson.consolidation;
 
 import aero.champ.cargojson.airwaybill.*;
 import aero.champ.cargojson.common.*;
-import aero.champ.cargojson.docgen.annotations.JsonDocExample;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyDescription;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.util.HashSet;
 import java.util.List;
@@ -26,7 +26,7 @@ public class HouseWaybill {
 
     @JsonProperty(required = true)
     @JsonPropertyDescription("The house way bill serial number")
-    @JsonDocExample("LON123456789")
+    @Schema(description = "The house way bill serial number", example = "LON123456789")
     public String serialNumber;
 
     @JsonProperty(required = true)
@@ -45,7 +45,7 @@ public class HouseWaybill {
 
     public Optional<AgentIdentification> agent = Optional.empty();
 
-    @JsonDocExample("En close pouch with export documents")
+    @Schema(example = "En close pouch with export documents")
     public Optional<String> specialServiceRequest = Optional.empty();
 
     public Optional<AccountContact> alsoNotify  = Optional.empty();
@@ -68,7 +68,7 @@ public class HouseWaybill {
     @JsonProperty(required = true)
     public CarriersExecution carriersExecution;
 
-    @JsonDocExample("not secured")
+    @Schema(example = "not secured")
     public Optional<String> otherServiceInformation = Optional.empty();
 
     public Optional<String> customsOriginCode = Optional.empty();
@@ -83,10 +83,11 @@ public class HouseWaybill {
     public Set<SpecialHandlingAndDangerousGoodsCode> specialHandlingCodes = new HashSet<>();
 
     @JsonPropertyDescription("Special handling codes that are not covered by the enumeration type of field 'specialHandlingCodes'.")
-    @JsonDocExample("FOO")
+    @Schema(description = "Special handling codes that are not covered by the enumeration type of field 'specialHandlingCodes'.", example = "FOO")
     public Set<String> additionalSpecialHandlingCodes = new HashSet<>();
 
     @JsonPropertyDescription("Shipment reference information.")
+    @Schema(description="Shipment reference information.")
     public Optional<ShipmentReferenceInfo> shipmentReferenceInformation = Optional.empty();
 
     public Optional<List<OCI>> oci = Optional.empty();

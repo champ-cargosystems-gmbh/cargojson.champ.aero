@@ -1,5 +1,6 @@
 package aero.champ.cargojson.airmail;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.time.LocalDateTime;
@@ -14,4 +15,9 @@ public class ConsignmentSecurityInformation {
 
     public List<SecurityStatusDetailedInformation> securityStatusDetailedInformation;
     public List<SecurityTextualStatementInformation> securityTextualStatementInformation;
+
+    @JsonIgnore
+    public int unknownProperty1;
+    @JsonIgnore
+    public int unknownProperty2;
 }

@@ -2,16 +2,19 @@ package aero.champ.cargojson.common;
 
 import com.fasterxml.jackson.annotation.JsonClassDescription;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.stream.Stream;
 
 @JsonFormat(shape = JsonFormat.Shape.STRING)
 @JsonClassDescription("Enumeration for weight units.")
+@Schema(description = "Enumeration for weight units.")
 public enum WeightUnit {
 
-    KILOGRAM("K","KGM", BigDecimal.ONE),
-    POUND("L","LBR", BigDecimal.valueOf(0.45359233).setScale(8,BigDecimal.ROUND_HALF_DOWN)),
+    KILOGRAM("K", "KGM", BigDecimal.ONE),
+    POUND("L", "LBR", BigDecimal.valueOf(0.45359233).setScale(8, RoundingMode.HALF_DOWN)),
     ;
 
     public final String cargoImpCode;

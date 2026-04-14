@@ -1,7 +1,7 @@
 package aero.champ.cargojson.airwaybill;
 
-import aero.champ.cargojson.docgen.annotations.JsonDocExample;
 import com.fasterxml.jackson.annotation.*;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.math.BigDecimal;
 import java.util.Optional;
@@ -11,30 +11,25 @@ import java.util.Optional;
         "All values are money in an agreed currency.")
 public class ChargeSummary {
 
-    @JsonPropertyDescription("Charge amount for total weight.")
-    @JsonDocExample("120.99")
-    public Optional<BigDecimal> totalWeightCharge = Optional.empty();
-
-    @JsonPropertyDescription("Valuation charge amount.")
-    @JsonDocExample("110.00")
-    public Optional<BigDecimal> valuationCharge = Optional.empty();
-
-    @JsonPropertyDescription("Taxes.")
-    @JsonDocExample("22.45")
-    public Optional<BigDecimal> taxes = Optional.empty();
-
-    @JsonPropertyDescription("Total other charges due agent.")
-    @JsonDocExample("32.95")
-    public Optional<BigDecimal> totalOtherChargesDueAgent = Optional.empty();
-
-    @JsonPropertyDescription("Total other charges due carrier.")
-    @JsonDocExample("43.00")
-    public Optional<BigDecimal> totalOtherChargesDueCarrier = Optional.empty();
-
     @JsonProperty(required = true)
     @JsonPropertyDescription("Total charges.")
-    @JsonDocExample("329.39")
+    @Schema(description = "Total charges.", example = "329.39")
     public final BigDecimal chargeSummaryTotal;
+    @JsonPropertyDescription("Charge amount for total weight.")
+    @Schema(description = "Charge amount for total weight.", example = "120.99")
+    public Optional<BigDecimal> totalWeightCharge = Optional.empty();
+    @JsonPropertyDescription("Valuation charge amount.")
+    @Schema(description = "Valuation charge amount.", example = "110.00")
+    public Optional<BigDecimal> valuationCharge = Optional.empty();
+    @JsonPropertyDescription("Taxes.")
+    @Schema(description = "Taxes.", example = "22.45")
+    public Optional<BigDecimal> taxes = Optional.empty();
+    @JsonPropertyDescription("Total other charges due agent.")
+    @Schema(description = "Total other charges due agent.", example = "32.95")
+    public Optional<BigDecimal> totalOtherChargesDueAgent = Optional.empty();
+    @JsonPropertyDescription("Total other charges due carrier.")
+    @Schema(description = "Total other charges due carrier.", example = "43.00")
+    public Optional<BigDecimal> totalOtherChargesDueCarrier = Optional.empty();
 
     @JsonCreator
     public ChargeSummary(@JsonProperty(value = "chargeSummaryTotal", required = true) BigDecimal chargeSummaryTotal) {

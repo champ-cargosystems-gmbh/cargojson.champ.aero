@@ -2,11 +2,13 @@ package aero.champ.cargojson.common;
 
 import com.fasterxml.jackson.annotation.JsonClassDescription;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.util.stream.Stream;
 
 @JsonFormat(shape = JsonFormat.Shape.STRING)
 @JsonClassDescription("Enumeration for participant type.")
+@Schema(description = "Enumeration for participant type.")
 public enum ParticipantType {
 
     AIR("AIR", "Airline"),

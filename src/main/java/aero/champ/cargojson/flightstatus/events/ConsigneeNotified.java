@@ -2,12 +2,12 @@ package aero.champ.cargojson.flightstatus.events;
 
 import aero.champ.cargojson.common.FlightIdentity;
 import aero.champ.cargojson.common.IATAAirportCode;
-import aero.champ.cargojson.docgen.annotations.JsonDocExample;
 import aero.champ.cargojson.flightstatus.FlightEvent;
 import com.fasterxml.jackson.annotation.JsonClassDescription;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyDescription;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.util.Optional;
 
@@ -19,15 +19,16 @@ public class ConsigneeNotified extends FlightEvent {
 
     @JsonProperty(required = true)
     @JsonPropertyDescription("The airport of the notification.")
+    @Schema(description="The airport of the notification.")
     public IATAAirportCode airportOfNotification;
 
     @JsonPropertyDescription("The name of the individual or company that has been notified.")
-    @JsonDocExample("K. Wilson, Supersonic Shipping Co.")
+    @Schema(description = "The name of the individual or company that has been notified.", example = "K. Wilson, Supersonic Shipping Co.")
     public Optional<String> notificationToName = Optional.empty();
 
     @Override
     public Optional<IATAAirportCode> airportOfEvent() {
-        return Optional.of(airportOfNotification);
+        return Optional.ofNullable(airportOfNotification);
     }
 
     @Override

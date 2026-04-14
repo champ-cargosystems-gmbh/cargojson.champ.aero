@@ -2,9 +2,11 @@ package aero.champ.cargojson.common;
 
 import com.fasterxml.jackson.annotation.JsonClassDescription;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 @JsonFormat(shape = JsonFormat.Shape.STRING)
 @JsonClassDescription("Service code to identify cargo products.")
+@Schema(description = "Service code to identify cargo products.")
 public enum ServiceCode {
 
     AIRPORT_TO_AIRPORT("A"),

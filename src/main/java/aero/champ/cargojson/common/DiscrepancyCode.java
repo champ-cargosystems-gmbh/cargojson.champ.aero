@@ -2,13 +2,16 @@ package aero.champ.cargojson.common;
 
 import com.fasterxml.jackson.annotation.JsonClassDescription;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.util.Optional;
 
 @JsonFormat(shape = JsonFormat.Shape.STRING)
 @JsonClassDescription("Coded representation of a discrepancy.")
+@Schema(description = "Coded representation of a discrepancy.")
 public enum DiscrepancyCode {
 
+    EXCEPTION_HANDLING_CODE_PROCEDURE("EHCP"),
     FOUND_AIR_WAYBILL("FDAW"),
     FOUND_CARGO("FDCA"),
     MISSING_AIR_WAYBILL("MSAW"),
@@ -20,7 +23,8 @@ public enum DiscrepancyCode {
     DEFINITELY_LOADED("DFLD"),
     OFFLOADED("OFLD"),
     OVERCARRIED("OVCD"),
-    SHORTSHIPPED("SSPD");
+    SHORTSHIPPED("SSPD"),
+    DAMAGED("DMGD");
 
     public final String cargoImpCode;
     public final Optional<String> alternateCode;

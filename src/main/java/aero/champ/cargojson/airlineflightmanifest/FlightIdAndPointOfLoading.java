@@ -5,11 +5,13 @@ import aero.champ.cargojson.common.IATAAirportCode;
 import com.fasterxml.jackson.annotation.JsonClassDescription;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.util.Optional;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @JsonClassDescription("Describes the flight and the point of unloading")
+@Schema(description = "Describes the flight and the point of unloading")
 public class FlightIdAndPointOfLoading {
 
     @JsonProperty(required = true)

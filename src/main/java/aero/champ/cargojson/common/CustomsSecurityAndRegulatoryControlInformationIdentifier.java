@@ -2,9 +2,11 @@ package aero.champ.cargojson.common;
 
 import com.fasterxml.jackson.annotation.JsonClassDescription;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 @JsonFormat(shape = JsonFormat.Shape.STRING)
 @JsonClassDescription("Customs, security and regulatory control information identifier.")
+@Schema(description = "Customs, security and regulatory control information identifier.")
 public enum CustomsSecurityAndRegulatoryControlInformationIdentifier {
 
     ACCOUNT_CONSIGNOR("AC"),

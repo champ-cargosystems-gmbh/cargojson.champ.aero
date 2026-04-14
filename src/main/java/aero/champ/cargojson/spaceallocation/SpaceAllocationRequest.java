@@ -1,11 +1,11 @@
 package aero.champ.cargojson.spaceallocation;
 
 import aero.champ.cargojson.common.*;
-import aero.champ.cargojson.docgen.annotations.JsonDocExample;
 import com.fasterxml.jackson.annotation.JsonClassDescription;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyDescription;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.util.*;
 
@@ -20,69 +20,89 @@ public class SpaceAllocationRequest {
 
     @JsonProperty(required = true)
     @JsonPropertyDescription("Contains the air waybill number.")
+    @Schema(description="Contains the air waybill number.")
     public AirWaybillNumber airWaybillNumber;
 
     @JsonProperty(required = true)
-    @JsonPropertyDescription("Origin and destination airports of the consigment.")
+    @JsonPropertyDescription("Origin and destination airports of the consignment.")
+    @Schema(description = "Origin and destination airports of the consignment.")
     public OriginAndDestination originAndDestination;
 
     @JsonProperty(required = true)
-    @JsonPropertyDescription("Quantity details of the consigment.")
+    @JsonPropertyDescription("Quantity details of the consignment.")
+    @Schema(description = "Quantity details of the consignment.")
     public Quantity quantity;
 
     @JsonPropertyDescription("Volume data of the consignment.")
+    @Schema(description="Volume data of the consignment.")
     public Optional<Volume> volume = Optional.empty();
 
     @JsonPropertyDescription("Density group - usually given if no volume data is specified.")
+    @Schema(description="Density group - usually given if no volume data is specified.")
     public Optional<DensityGroup> densityGroup = Optional.empty();
 
     @JsonPropertyDescription("Total number of pieces of complete consignment.")
-    @JsonDocExample("20")
+    @Schema(description = "Total number of pieces of complete consignment.", example = "20")
     public Optional<Integer> totalConsignmentPieces = Optional.empty();
 
     @JsonProperty(required = true)
     @JsonPropertyDescription("Short description of the nature of the contained goods.")
-    @JsonDocExample("Electronic parts")
+    @Schema(description = "Short description of the nature of the contained goods.", example = "Electronic parts")
     public String natureOfGoods;
 
     @JsonPropertyDescription("Array of codes for special handling and dangerous goods.")
+    @Schema(description="Array of codes for special handling and dangerous goods.")
     public Set<SpecialHandlingAndDangerousGoodsCode> specialHandlingRequirements = new HashSet<>();
+
+    @JsonPropertyDescription("Special handling codes that are not covered by the enumeration type of field 'specialHandlingCodes'.")
+    @Schema(description = "Special handling codes that are not covered by the enumeration type of field 'specialHandlingCodes'.", example = "FOO")
+    public Set<String> additionalSpecialHandlingCodes = new HashSet<>();
+
 
     @JsonProperty(required = true)
     @JsonPropertyDescription("Array of flight details for the regarded consignment.")
+    @Schema(description="Array of flight details for the regarded consignment.")
     public List<FlightDetails> flightDetails = new ArrayList<>();
 
     @JsonProperty(required = true)
     @JsonPropertyDescription("Booking reference.")
+    @Schema(description="Booking reference.")
     public ReferenceInfo bookingReference;
 
     @JsonPropertyDescription("Array of Unit Load Device (ULD) data.")
+    @Schema(description="Array of Unit Load Device (ULD) data.")
     public Optional<List<ULD>> uldDescriptions = Optional.empty();
 
     @JsonPropertyDescription("Other service information: Remarks relating to a shipment.")
-    @JsonDocExample("Extra charge due to special handling requirements.")
+    @Schema(description = "Other service information: Remarks relating to a shipment.", example = "Extra charge due to special handling requirements.")
     public Optional<String> otherServiceInformation = Optional.empty();
 
     @JsonPropertyDescription("Special Service Request (Information related to instructions for special action required).")
-    @JsonDocExample("Must be kept above 5 degrees celsius.")
+    @Schema(description = "Special Service Request (Information related to instructions for special action required).", example = "Must be kept above 5 degrees celsius.")
     public Optional<String> specialServiceRequest = Optional.empty();
 
     @JsonPropertyDescription("Array of dimensions information.")
+    @Schema(description="Array of dimensions information.")
     public Optional<List<DimensionInfo>> dimensionInformation = Optional.empty();
 
     @JsonPropertyDescription("Shipment reference information.")
+    @Schema(description="Shipment reference information.")
     public Optional<ShipmentReferenceInfo> shipmentReferenceInformation = Optional.empty();
 
     @JsonPropertyDescription("Customer identification.")
+    @Schema(description="Customer identification.")
     public Optional<CustomerIdentification> customerIdentification = Optional.empty();
 
     @JsonPropertyDescription("Product information.")
+    @Schema(description="Product information.")
     public Optional<ProductInformation> productInformation = Optional.empty();
 
     @JsonPropertyDescription("Account contact of the shipper.")
+    @Schema(description="Account contact of the shipper.")
     public Optional<AccountContact> shipper = Optional.empty();
 
     @JsonPropertyDescription("Account contact of the consignee.")
+    @Schema(description="Account contact of the consignee.")
     public Optional<AccountContact> consignee = Optional.empty();
 
 }

@@ -1,25 +1,28 @@
 package aero.champ.cargojson.common;
 
-import aero.champ.cargojson.docgen.annotations.JsonDocExample;
 import com.fasterxml.jackson.annotation.*;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.math.BigInteger;
 import java.util.Optional;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @JsonClassDescription("Quantity details of a shipment.")
+@Schema(description = "Quantity details of a shipment.")
 public class Quantity {
 
     @JsonProperty(required = true)
     @JsonPropertyDescription("Shipment description code.")
+    @Schema(description="Shipment description code.")
     public final ShipmentDescriptionCode shipmentDescriptionCode;
 
     @JsonProperty(required = true)
     @JsonPropertyDescription("Number of loose items and/or ULDs as accepted for carriage.")
-    @JsonDocExample("8")
+    @Schema(description = "Number of loose items and/or ULDs as accepted for carriage.", example = "8")
     public final BigInteger numberOfPieces;
 
     @JsonPropertyDescription("Weight of the cargo.")
+    @Schema(description="Weight of the cargo.")
     public final Optional<Weight> weight;
 
     @JsonCreator

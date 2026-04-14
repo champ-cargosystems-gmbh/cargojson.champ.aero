@@ -1,5 +1,6 @@
 package aero.champ.cargojson.airmail;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -8,6 +9,9 @@ import java.util.Optional;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class AirmailRequest {
+
+    @JsonIgnore
+    public String originalContent;
 
     @JsonProperty(required = true)
     public ConsignmentInformation consignmentInformation = new ConsignmentInformation();
@@ -22,4 +26,7 @@ public class AirmailRequest {
     public List<TransportInformation> transportInformations;
     public List<ContainerInformation> containerInformations;
     public List<ReceptacleInformation> receptacleInformations;
+    @JsonIgnore
+    public int unknownProperty1;
+
 }

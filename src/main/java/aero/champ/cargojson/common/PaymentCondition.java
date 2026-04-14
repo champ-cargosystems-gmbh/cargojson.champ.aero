@@ -1,8 +1,10 @@
 package aero.champ.cargojson.common;
 
 import com.fasterxml.jackson.annotation.JsonClassDescription;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 @JsonClassDescription("Prepaid/Collect indicator: Code indicating whether payment will be made at origin (prepaid) or at destination (collect).")
+@Schema(description = "Prepaid/Collect indicator: Code indicating whether payment will be made at origin (prepaid) or at destination (collect).")
 public enum PaymentCondition {
     Collect("C"), Prepaid("P");
 

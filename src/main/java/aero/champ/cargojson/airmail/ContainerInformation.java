@@ -8,6 +8,7 @@ public class ContainerInformation {
     public String containerNumberSource;
     public String containerEquipmentQualifier;
     public String containerType;
+    public String containerSizeAndType;
     public String containerTypeSource;
     public double containerWeight;
     public String containerWeightType;

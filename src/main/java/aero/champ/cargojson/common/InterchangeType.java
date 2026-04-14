@@ -1,8 +1,10 @@
 package aero.champ.cargojson.common;
 
 import com.fasterxml.jackson.annotation.JsonClassDescription;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 @JsonClassDescription("Enumeration for Cargo Canonical message interchange types.")
+@Schema(description = "Enumeration for Cargo Canonical message interchange types.")
 public enum InterchangeType {
 
         AirWayBillDataRequest,
@@ -33,7 +35,7 @@ public enum InterchangeType {
         AllotmentInformationRequest,
         AllotmentInformationAnswer,
         Defective,
-        GenericRequest;
+        GenericRequest
 
 
 }

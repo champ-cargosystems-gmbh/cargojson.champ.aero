@@ -1,11 +1,11 @@
 package aero.champ.cargojson.common;
 
-import aero.champ.cargojson.docgen.annotations.JsonDocExample;
 import com.fasterxml.jackson.annotation.*;
-
-import javax.validation.constraints.Pattern;
+import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.Pattern;
 
 @JsonClassDescription("ICAO coded identification for carriers")
+@Schema(description = "ICAO coded identification for carriers")
 public class ICAOCarrierCode {
 
     @JsonIgnore
@@ -18,7 +18,7 @@ public class ICAOCarrierCode {
 
     @JsonValue
     @JsonPropertyDescription("Code")
-    @JsonDocExample("AFR")
+    @Schema(description = "Code", example = "AFR")
     public String code() {
         return code;
     }

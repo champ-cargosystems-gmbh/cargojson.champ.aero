@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonClassDescription;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyDescription;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,30 +17,38 @@ import java.util.Optional;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @JsonClassDescription("A consolidation list is to provide a \"Check-list\" of House Waybills associated with a Master Air Waybill.")
+@Schema(description = "A consolidation list is to provide a \"Check-list\" of House Waybills associated with a Master Air Waybill.")
 public class ConsolidationList {
 
     @JsonProperty(required = true)
     @JsonPropertyDescription("Contains the air waybill number.")
+    @Schema(description="Contains the air waybill number.")
     public AirWaybillNumber airWaybillNumber;
 
     @JsonProperty(required = true)
     @JsonPropertyDescription("Origin and destination airports of the shipment.")
+    @Schema(description="Origin and destination airports of the shipment.")
     public OriginAndDestination originAndDestination;
 
     @JsonProperty(required = true)
     @JsonPropertyDescription("Quantity details of the shipment.")
+    @Schema(description="Quantity details of the shipment.")
     public Quantity quantity;
 
     @JsonProperty(required = true)
     @JsonPropertyDescription("Array of house waybill summary details.")
+    @Schema(description="Array of house waybill summary details.")
     public List<HouseWaybillSummary> houseWaybillSummaries = new ArrayList<>();
 
     @JsonPropertyDescription("Account contact of the shipper.")
+    @Schema(description="Account contact of the shipper.")
     public Optional<AccountContact> shipper = Optional.empty();
 
     @JsonPropertyDescription("Account contact of the consignee.")
+    @Schema(description="Account contact of the consignee.")
     public Optional<AccountContact> consignee = Optional.empty();
 
     @JsonPropertyDescription("Charge Declarations.")
+    @Schema(description="Charge Declarations.")
     public Optional<ChargeDeclarations> chargeDeclarations = Optional.empty();
 }

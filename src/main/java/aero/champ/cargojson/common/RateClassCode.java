@@ -2,12 +2,14 @@ package aero.champ.cargojson.common;
 
 import com.fasterxml.jackson.annotation.JsonClassDescription;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.util.Optional;
 import java.util.stream.Stream;
 
 @JsonFormat(shape = JsonFormat.Shape.STRING)
 @JsonClassDescription("Code representing a specific rate category.")
+@Schema(description = "Code representing a specific rate category.")
 public enum RateClassCode {
 
     BASIC_CHARGE("B", "6")

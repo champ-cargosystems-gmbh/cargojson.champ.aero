@@ -2,11 +2,13 @@ package aero.champ.cargojson.common;
 
 import com.fasterxml.jackson.annotation.JsonClassDescription;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.util.stream.Stream;
 
 @JsonFormat(shape = JsonFormat.Shape.STRING)
 @JsonClassDescription("Measurement unit for dimension data.")
+@Schema(description = "Measurement unit for dimension data.")
 public enum LengthUnit {
 
     CENTIMETRE("CMT")

@@ -1,11 +1,14 @@
 package aero.champ.cargojson.common;
 
-import aero.champ.cargojson.docgen.annotations.JsonDocExample;
-import com.fasterxml.jackson.annotation.*;
-
-import javax.validation.constraints.Pattern;
+import com.fasterxml.jackson.annotation.JsonClassDescription;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonValue;
+import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.Pattern;
 
 @JsonClassDescription("Customs Status Code")
+@Schema(description = "Customs Status Code")
 public class CustomsStatusCode {
 
     @JsonIgnore
@@ -17,7 +20,7 @@ public class CustomsStatusCode {
     }
 
     @JsonValue
-    @JsonDocExample("CC")
+    @Schema(example = "CC")
     public String code() {
         return code;
     }

@@ -1,11 +1,11 @@
 package aero.champ.cargojson.common;
 
-import aero.champ.cargojson.docgen.annotations.JsonDocExample;
 import com.fasterxml.jackson.annotation.*;
-
-import javax.validation.constraints.Pattern;
+import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.Pattern;
 
 @JsonClassDescription("Coded identification approved by IATA for a carrier.")
+@Schema(description = "Coded identification approved by IATA for a carrier.")
 public class IATACarrierCode {
 
     @JsonIgnore
@@ -18,8 +18,13 @@ public class IATACarrierCode {
 
     @JsonValue
     @JsonPropertyDescription("Code matching the regular expression:\n(?:[A-Z][A-Z]|[A-Z][0-9]|[0-9][A-Z])")
-    @JsonDocExample("BA")
+    @Schema(description = "Code matching the regular expression:\n(?:[A-Z][A-Z]|[A-Z][0-9]|[0-9][A-Z])", example = "BA")
     public String code() {
+        return code;
+    }
+
+    @Override
+    public String toString() {
         return code;
     }
 }

@@ -1,31 +1,33 @@
 package aero.champ.cargojson.common;
 
-import aero.champ.cargojson.docgen.annotations.JsonDocExample;
 import com.fasterxml.jackson.annotation.JsonClassDescription;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyDescription;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 @JsonClassDescription("Dimension details of shipped goods.")
+@Schema(description = "Dimension details of shipped goods.")
 public class Dimensions {
 
     @JsonProperty(required = true)
     @JsonPropertyDescription("Measurement unit of the dimension values.")
+    @Schema(description="Measurement unit of the dimension values.")
     public final LengthUnit unit;
 
     @JsonProperty(required = true)
     @JsonPropertyDescription("Length value.")
-    @JsonDocExample("200")
+    @Schema(description = "Length value.", example = "200")
     public final int length;
 
     @JsonProperty(required = true)
     @JsonPropertyDescription("Width value.")
-    @JsonDocExample("150")
+    @Schema(description = "Width value.", example = "150")
     public final int width;
 
     @JsonProperty(required = true)
     @JsonPropertyDescription("Height value.")
-    @JsonDocExample("100")
+    @Schema(description = "Height value.", example = "100")
     public final int height;
 
     @JsonCreator

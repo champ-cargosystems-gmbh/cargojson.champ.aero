@@ -1,8 +1,10 @@
 package aero.champ.cargojson.common;
 
 import com.fasterxml.jackson.annotation.JsonClassDescription;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 @JsonClassDescription("Charge Code: Code identifying a method of payment of charges.")
+@Schema(description = "Charge Code: Code identifying a method of payment of charges.")
 public enum ChargeCode {
 
     ALL_CHARGES_COLLECT("CC")

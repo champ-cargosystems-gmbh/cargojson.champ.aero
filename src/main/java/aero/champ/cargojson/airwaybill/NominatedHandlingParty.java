@@ -1,22 +1,23 @@
 package aero.champ.cargojson.airwaybill;
 
-import aero.champ.cargojson.docgen.annotations.JsonDocExample;
 import com.fasterxml.jackson.annotation.JsonClassDescription;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyDescription;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 @JsonClassDescription("Nominated handling party.")
+@Schema(description = "Nominated handling party.")
 public class NominatedHandlingParty {
 
     @JsonProperty(required = true)
     @JsonPropertyDescription("Identification of individual or company involved in the movement of a consignment.")
-    @JsonDocExample("ACE Shipping Co.")
+    @Schema(description = "Identification of individual or company involved in the movement of a consignment.", example = "ACE Shipping Co.")
     public final String name;
 
     @JsonProperty(required = true)
     @JsonPropertyDescription("Location of individual or company involved in the movement of a consignment.")
-    @JsonDocExample("London")
+    @Schema(description = "Location of individual or company involved in the movement of a consignment.", example = "London")
     public final String place;
 
     @JsonCreator

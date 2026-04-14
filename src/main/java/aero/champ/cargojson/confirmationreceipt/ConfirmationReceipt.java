@@ -3,8 +3,8 @@ package aero.champ.cargojson.confirmationreceipt;
 import aero.champ.cargojson.common.AirWaybillNumber;
 import aero.champ.cargojson.common.IATAAirportCode;
 import aero.champ.cargojson.common.InterchangeType;
-import aero.champ.cargojson.docgen.annotations.JsonDocExample;
 import com.fasterxml.jackson.annotation.*;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.util.Optional;
 
@@ -15,28 +15,34 @@ import java.util.Optional;
 public class ConfirmationReceipt {
 
     @JsonPropertyDescription("Interchange type of the original message.")
+    @Schema(description="Interchange type of the original message.")
     public Optional<InterchangeType> referencedMessageType = Optional.empty();
 
     @JsonPropertyDescription("Air waybill number of the original message.")
+    @Schema(description="Air waybill number of the original message.")
     public Optional<AirWaybillNumber> airWaybillNumber = Optional.empty();
 
     @JsonPropertyDescription("Origin airport code of the original message.")
+    @Schema(description="Origin airport code of the original message.")
     public Optional<IATAAirportCode> origin = Optional.empty();
 
     @JsonPropertyDescription("Destination airport code of the original message.")
+    @Schema(description="Destination airport code of the original message.")
     public Optional<IATAAirportCode> destination = Optional.empty();
 
     @JsonPropertyDescription("Flag indicating if the original message was rejected with an error.")
+    @Schema(description="Flag indicating if the original message was rejected with an error.")
     @JsonProperty(required = true)
     public boolean rejected = false;
 
     @JsonPropertyDescription("Message body of the confirmation receipt. This should be the reason for acknowledgement " +
             "or the reason for rejection or error.")
-    @JsonDocExample("Invalid AWB number")
+    @Schema(description = "Message body of the confirmation receipt. This should be the reason for acknowledgement " +
+            "or the reason for rejection or error.", example = "Invalid AWB number")
     public Optional<String> textMessage = Optional.empty();
 
     @JsonPropertyDescription("Content of the original message in its original message format.")
-    @JsonDocExample("FSR\n" +
+    @Schema(description = "Content of the original message in its original message format.", example = "FSR\n" +
             "157-97631844")
     public Optional<String> referenceMessageContent = Optional.empty();
 

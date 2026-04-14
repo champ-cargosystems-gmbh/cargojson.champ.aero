@@ -1,5 +1,6 @@
 package aero.champ.cargojson.airmail;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.time.LocalDateTime;
@@ -8,6 +9,8 @@ public class TransportInformation {
     @JsonProperty(required = true)
     public String transportStageQualifier;
     public String carrierCode;
+    @JsonIgnore
+    public String unknownProperty1;
     public String carrierCodeSource;
     public String carrierName;
     public String conveyanceReference;

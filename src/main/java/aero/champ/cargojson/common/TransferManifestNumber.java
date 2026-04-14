@@ -1,11 +1,11 @@
 package aero.champ.cargojson.common;
 
-import aero.champ.cargojson.docgen.annotations.JsonDocExample;
 import com.fasterxml.jackson.annotation.*;
-
-import javax.validation.constraints.Pattern;
+import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.Pattern;
 
 @JsonClassDescription("Transfer manifest number: Identification number allocated to each transfer manifest or substitute flight manifest.")
+@Schema(description = "Transfer manifest number: Identification number allocated to each transfer manifest or substitute flight manifest.")
 public class TransferManifestNumber {
 
     @JsonIgnore
@@ -18,7 +18,7 @@ public class TransferManifestNumber {
 
     @JsonValue
     @JsonPropertyDescription("Value of the transfer manifest number.")
-    @JsonDocExample("123456")
+    @Schema(description = "Value of the transfer manifest number.", example = "123456")
     public String number() {
         return number;
     }

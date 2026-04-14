@@ -1,8 +1,10 @@
 package aero.champ.cargojson.airwaybill;
 
 import com.fasterxml.jackson.annotation.JsonClassDescription;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 @JsonClassDescription("Entitlement code: Coded identification of the recipient of a charge amount.")
+@Schema(description = "Entitlement code: Coded identification of the recipient of a charge amount.")
 public enum EntitlementCode {
     Agent("A"), Carrier("C");
 

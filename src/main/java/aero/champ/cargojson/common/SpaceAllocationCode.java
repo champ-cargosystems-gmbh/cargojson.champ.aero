@@ -1,8 +1,10 @@
 package aero.champ.cargojson.common;
 
 import com.fasterxml.jackson.annotation.JsonClassDescription;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 @JsonClassDescription("Space Allocation Code: Coded indication of the action requested, taken or confirmed related to space allocation.")
+@Schema(description = "Space Allocation Code: Coded indication of the action requested, taken or confirmed related to space allocation.")
 public enum SpaceAllocationCode {
     XX("XX", "Cancel Any Previous Space Allocatiomn"),
     SS("SS", "Reporting Sale"),

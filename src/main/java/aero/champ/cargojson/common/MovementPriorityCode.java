@@ -2,11 +2,13 @@ package aero.champ.cargojson.common;
 
 import com.fasterxml.jackson.annotation.JsonClassDescription;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.util.stream.Stream;
 
 @JsonFormat(shape = JsonFormat.Shape.STRING)
 @JsonClassDescription("Enumeration for movement priorities.")
+@Schema(description = "Enumeration for movement priorities.")
 public enum MovementPriorityCode {
 
     CONSIGNMENT_UNDER_BOND("B")
@@ -15,7 +17,6 @@ public enum MovementPriorityCode {
     ,HIGH("H")
     ,LOW("L")
     ,SERVICE_SHIPMENT("S");
-    ;
 
     public final String cargoImpCode;
 

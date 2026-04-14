@@ -1,25 +1,26 @@
 package aero.champ.cargojson.common;
 
-import aero.champ.cargojson.docgen.annotations.JsonDocExample;
 import com.fasterxml.jackson.annotation.JsonClassDescription;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyDescription;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 @JsonClassDescription("Office message address.")
+@Schema(description = "Office message address.")
 public class OfficeMessageAddress {
 
     @JsonProperty(required = true)
     @JsonPropertyDescription("Coded representation of a specific airport/city code.")
-    @JsonDocExample("LHR")
+    @Schema(description = "Coded representation of a specific airport/city code.", example = "LHR")
     public String airportCityCode;
 
     @JsonProperty(required = true)
     @JsonPropertyDescription("Office function designator: Code identifying an office for addressing purposes.")
-    @JsonDocExample("6F")
+    @Schema(description = "Office function designator: Code identifying an office for addressing purposes.", example = "6F")
     public String officeFunctionDesignator;
 
     @JsonProperty(required = true)
     @JsonPropertyDescription("Company designator: Code identifying a company for addressing purposes.")
-    @JsonDocExample("XB")
+    @Schema(description = "Company designator: Code identifying a company for addressing purposes.", example = "XB")
     public String companyDesignator;
 }

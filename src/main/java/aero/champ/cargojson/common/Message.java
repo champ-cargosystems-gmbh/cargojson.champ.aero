@@ -6,14 +6,18 @@ import aero.champ.cargojson.airwaybill.AirWayBillMessage;
 import aero.champ.cargojson.confirmationreceipt.ConfirmationReceiptMessage;
 import aero.champ.cargojson.consolidation.ConsolidationListMessage;
 import aero.champ.cargojson.consolidation.HouseWaybillMessage;
+import aero.champ.cargojson.customs.CustomsStatusNotificationMessage;
 import aero.champ.cargojson.flightstatus.FlightHistoryMessage;
 import aero.champ.cargojson.flightstatus.FlightStatusMessage;
 import aero.champ.cargojson.flightstatus.FlightStatusRequestMessage;
 import aero.champ.cargojson.jackson.DefaultObjectMapperBuilder;
 import aero.champ.cargojson.spaceallocation.SpaceAllocationAnswerMessage;
 import aero.champ.cargojson.spaceallocation.SpaceAllocationRequestMessage;
+import aero.champ.cargojson.truckingstatus.TruckingStatus;
+import aero.champ.cargojson.truckingstatus.TruckingStatusMessage;
 import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.io.IOException;
 import java.io.ObjectOutputStream;
@@ -27,33 +31,40 @@ import java.util.UUID;
         @JsonSubTypes.Type(value = FlightStatusMessage.class, name = "flight status"),
         @JsonSubTypes.Type(value = FlightHistoryMessage.class, name = "flight history"),
         @JsonSubTypes.Type(value = AirWayBillMessage.class, name = "air waybill"),
-        // TODO check, if this is the right place
         @JsonSubTypes.Type(value = HouseWaybillMessage.class, name = "house waybill"),
         @JsonSubTypes.Type(value = ConfirmationReceiptMessage.class, name = "confirmation receipt"),
         @JsonSubTypes.Type(value = SpaceAllocationAnswerMessage.class, name = "space allocation answer"),
         @JsonSubTypes.Type(value = FlightStatusRequestMessage.class, name = "flight status request"),
         @JsonSubTypes.Type(value = AirmailRequestMessage.class, name = "airmail request"),
         @JsonSubTypes.Type(value = ConsolidationListMessage.class, name = "consolidation list"),
-        @JsonSubTypes.Type(value = AirlineFlightManifestMessage.class, name = "flight manifest")
+        @JsonSubTypes.Type(value = AirlineFlightManifestMessage.class, name = "flight manifest"),
+        @JsonSubTypes.Type(value = CustomsStatusNotificationMessage.class, name = "customs status notification"),
+        @JsonSubTypes.Type(value = TruckingStatusMessage.class, name = "trucking status notification")
 })
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @JsonClassDescription("Cargo Canonical Message base type containing all fields that are common to " +
+    "all Cargo Canonical business messages. This is a polymorphic type. Depending on the value of the 'type' property, " +
+    "the payload will be one of the concrete message types (e.g. AirWayBillMessage, FlightStatusMessage, etc.). " +
     "all Cargo Canonical business messages.")
 @JsonSerialize(typing = JsonSerialize.Typing.DYNAMIC)
+    @Schema(subTypes = {SpaceAllocationRequestMessage.class, FlightStatusMessage.class, FlightHistoryMessage.class, AirWayBillMessage.class, HouseWaybillMessage.class, ConfirmationReceiptMessage.class, SpaceAllocationAnswerMessage.class, FlightStatusRequestMessage.class, AirmailRequestMessage.class, ConsolidationListMessage.class, AirlineFlightManifestMessage.class, CustomsStatusNotificationMessage.class, TruckingStatusMessage.class})
 public abstract class Message<T> implements Serializable {
 
     private static final long serialVersionUID = 1l;
 
     @JsonProperty(required = true)
     @JsonPropertyDescription("Unique identification of the message.")
+    @Schema(description="Unique identification of the message.")
     public UUID id = UUID.randomUUID();
 
     @JsonProperty(required = true)
     @JsonPropertyDescription("The message header.")
+    @Schema(description="The message header.")
     public MessageHeader messageHeader = new MessageHeader();
 
     @JsonUnwrapped
     @JsonPropertyDescription("The body of the message containing the business payload.")
+    @Schema(description="The body of the message containing the business payload.")
     public T payload;
 
     public <V extends Message<?>> Optional<V> narrow(Class<V> clazz) {
