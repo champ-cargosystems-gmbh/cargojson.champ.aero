@@ -690,11 +690,11 @@ components:
       description: Cargo Canonical message containing an AirWayBill as payload.
       properties:
         type:
-          description: "[Message Base] "
+          description: "**[Message Base]** "
           type: string
           example: null
         id:
-          description: "[Message Base] Unique identification of the message."
+          description: "**[Message Base]** Unique identification of the message."
           format: uuid
           type: string
           example: null
@@ -702,7 +702,8 @@ components:
           $ref: "#/components/schemas/MessageHeader"
         airWaybillNumber:
           description: |-
-            [Payload Fields]
+            **[Payload Fields]**
+
             Contains the air waybill number.
           type: string
           example: null
@@ -1003,11 +1004,11 @@ components:
         payload.
       properties:
         type:
-          description: "[Message Base] "
+          description: "**[Message Base]** "
           type: string
           example: null
         id:
-          description: "[Message Base] Unique identification of the message."
+          description: "**[Message Base]** Unique identification of the message."
           format: uuid
           type: string
           example: null
@@ -1015,7 +1016,8 @@ components:
           $ref: "#/components/schemas/MessageHeader"
         messageSequence:
           description: |-
-            [Payload Fields]
+            **[Payload Fields]**
+
             The message sequence provides compatibility with Cargo IMP. The first sequence number is '1'.
           format: int32
           type: integer
@@ -1080,11 +1082,11 @@ components:
     AirmailRequestMessage:
       properties:
         type:
-          description: "[Message Base] "
+          description: "**[Message Base]** "
           type: string
           example: null
         id:
-          description: "[Message Base] Unique identification of the message."
+          description: "**[Message Base]** Unique identification of the message."
           format: uuid
           type: string
           example: null
@@ -1758,11 +1760,11 @@ components:
       description: Cargo Canonical message containing a ConfirmationReceipt as payload.
       properties:
         type:
-          description: "[Message Base] "
+          description: "**[Message Base]** "
           type: string
           example: null
         id:
-          description: "[Message Base] Unique identification of the message."
+          description: "**[Message Base]** Unique identification of the message."
           format: uuid
           type: string
           example: null
@@ -1770,7 +1772,8 @@ components:
           $ref: "#/components/schemas/MessageHeader"
         referencedMessageType:
           description: |-
-            [Payload Fields]
+            **[Payload Fields]**
+
             Enumeration for Cargo Canonical message interchange types.
           enum:
           - AirWayBillDataRequest
@@ -2156,11 +2159,11 @@ components:
       description: Cargo Canonical message containing a ConsolidationList as payload.
       properties:
         type:
-          description: "[Message Base] "
+          description: "**[Message Base]** "
           type: string
           example: null
         id:
-          description: "[Message Base] Unique identification of the message."
+          description: "**[Message Base]** Unique identification of the message."
           format: uuid
           type: string
           example: null
@@ -2168,7 +2171,8 @@ components:
           $ref: "#/components/schemas/MessageHeader"
         airWaybillNumber:
           description: |-
-            [Payload Fields]
+            **[Payload Fields]**
+
             Contains the air waybill number.
           type: string
           example: null
@@ -2518,11 +2522,11 @@ components:
         as payload.
       properties:
         type:
-          description: "[Message Base] "
+          description: "**[Message Base]** "
           type: string
           example: null
         id:
-          description: "[Message Base] Unique identification of the message."
+          description: "**[Message Base]** Unique identification of the message."
           format: uuid
           type: string
           example: null
@@ -2530,7 +2534,8 @@ components:
           $ref: "#/components/schemas/MessageHeader"
         airWaybillNumber:
           description: |-
-            [Payload Fields]
+            **[Payload Fields]**
+
             Contains the air waybill number.
           type: string
           example: null
@@ -2935,11 +2940,11 @@ components:
       description: Cargo Canonical message containing a FlightHistory as payload.
       properties:
         type:
-          description: "[Message Base] "
+          description: "**[Message Base]** "
           type: string
           example: null
         id:
-          description: "[Message Base] Unique identification of the message."
+          description: "**[Message Base]** Unique identification of the message."
           format: uuid
           type: string
           example: null
@@ -2947,7 +2952,8 @@ components:
           $ref: "#/components/schemas/MessageHeader"
         airWaybillNumber:
           description: |-
-            [Payload Fields]
+            **[Payload Fields]**
+
             Contains the air way bill number.
           type: string
           example: null
@@ -3022,11 +3028,11 @@ components:
       description: Cargo Canonical message containing a FlightStatus as payload.
       properties:
         type:
-          description: "[Message Base] "
+          description: "**[Message Base]** "
           type: string
           example: null
         id:
-          description: "[Message Base] Unique identification of the message."
+          description: "**[Message Base]** Unique identification of the message."
           format: uuid
           type: string
           example: null
@@ -3034,7 +3040,8 @@ components:
           $ref: "#/components/schemas/MessageHeader"
         airWaybillNumber:
           description: |-
-            [Payload Fields]
+            **[Payload Fields]**
+
             Contains the air waybill number.
           type: string
           example: null
@@ -3100,11 +3107,11 @@ components:
       description: Cargo Canonical message containing a FlightStatusRequest as payload.
       properties:
         type:
-          description: "[Message Base] "
+          description: "**[Message Base]** "
           type: string
           example: null
         id:
-          description: "[Message Base] Unique identification of the message."
+          description: "**[Message Base]** Unique identification of the message."
           format: uuid
           type: string
           example: null
@@ -3112,7 +3119,8 @@ components:
           $ref: "#/components/schemas/MessageHeader"
         airWaybillNumber:
           description: |-
-            [Payload Fields]
+            **[Payload Fields]**
+
             Contains the air waybill number.
           type: string
           example: null
@@ -3531,19 +3539,20 @@ components:
       description: Cargo Canonical message containing a HouseWaybill as payload.
       properties:
         type:
-          description: "[Message Base] "
+          description: "**[Message Base]** "
           type: string
           example: null
         id:
-          description: "[Message Base] Unique identification of the message."
+          description: "**[Message Base]** Unique identification of the message."
           format: uuid
           type: string
           example: null
         messageHeader:
           $ref: "#/components/schemas/MessageHeader"
         airWaybillNumber:
-          description: |
-            [Payload Fields]
+          description: |+
+            **[Payload Fields]**
+
           type: string
           example: null
         origin:
@@ -5393,11 +5402,11 @@ components:
       description: Cargo Canonical message containing a SpaceAllocationAnswer as payload.
       properties:
         type:
-          description: "[Message Base] "
+          description: "**[Message Base]** "
           type: string
           example: null
         id:
-          description: "[Message Base] Unique identification of the message."
+          description: "**[Message Base]** Unique identification of the message."
           format: uuid
           type: string
           example: null
@@ -5405,7 +5414,8 @@ components:
           $ref: "#/components/schemas/MessageHeader"
         airWaybillNumber:
           description: |-
-            [Payload Fields]
+            **[Payload Fields]**
+
             Contains the air waybill number.
           type: string
           example: null
@@ -5796,11 +5806,11 @@ components:
         payload.
       properties:
         type:
-          description: "[Message Base] "
+          description: "**[Message Base]** "
           type: string
           example: null
         id:
-          description: "[Message Base] Unique identification of the message."
+          description: "**[Message Base]** Unique identification of the message."
           format: uuid
           type: string
           example: null
@@ -5808,7 +5818,8 @@ components:
           $ref: "#/components/schemas/MessageHeader"
         airWaybillNumber:
           description: |-
-            [Payload Fields]
+            **[Payload Fields]**
+
             Contains the air waybill number.
           type: string
           example: null
@@ -6276,11 +6287,11 @@ components:
       description: Cargo Canonical message containing a TruckingStatus as payload.
       properties:
         type:
-          description: "[Message Base] "
+          description: "**[Message Base]** "
           type: string
           example: null
         id:
-          description: "[Message Base] Unique identification of the message."
+          description: "**[Message Base]** Unique identification of the message."
           format: uuid
           type: string
           example: null
@@ -6288,7 +6299,8 @@ components:
           $ref: "#/components/schemas/MessageHeader"
         processType:
           description: |-
-            [Payload Fields]
+            **[Payload Fields]**
+
             processType : firstmile or lastmile
           enum:
           - firstmile
@@ -6437,8 +6449,8 @@ components:
       - unit
       type: object
     MessageObject:
-      description: Internal base class for all message types. This schema is inlined
-        into concrete message types for better documentation readability.
+      description: Base class for all message types. Fields from this object are inlined
+        into the specific message documentation below for clarity.
       discriminator:
         propertyName: type
       properties:
