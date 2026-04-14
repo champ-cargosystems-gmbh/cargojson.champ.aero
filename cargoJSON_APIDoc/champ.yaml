@@ -6449,22 +6449,24 @@ components:
       - unit
       type: object
     MessageObject:
-      description: Base class for all message types. Fields from this object are inlined
-        into the specific message documentation below for clarity.
+      description: Polymorphic Cargo Canonical Message. Use the 'type' field to select
+        the specific message structure.
       discriminator:
         propertyName: type
-      properties:
-        id:
-          description: Unique identification of the message.
-          format: uuid
-          type: string
-        messageHeader:
-          $ref: "#/components/schemas/MessageHeader"
-        payload:
-          description: The body of the message containing the business payload.
-          type: object
-        type:
-          type: string
+      oneOf:
+      - $ref: "#/components/schemas/AirWayBillMessage"
+      - $ref: "#/components/schemas/AirlineFlightManifestMessage"
+      - $ref: "#/components/schemas/AirmailRequestMessage"
+      - $ref: "#/components/schemas/ConfirmationReceiptMessage"
+      - $ref: "#/components/schemas/ConsolidationListMessage"
+      - $ref: "#/components/schemas/CustomsStatusNotificationMessage"
+      - $ref: "#/components/schemas/FlightHistoryMessage"
+      - $ref: "#/components/schemas/FlightStatusMessage"
+      - $ref: "#/components/schemas/FlightStatusRequestMessage"
+      - $ref: "#/components/schemas/HouseWaybillMessage"
+      - $ref: "#/components/schemas/SpaceAllocationAnswerMessage"
+      - $ref: "#/components/schemas/SpaceAllocationRequestMessage"
+      - $ref: "#/components/schemas/TruckingStatusMessage"
       required:
       - id
       - messageHeader
